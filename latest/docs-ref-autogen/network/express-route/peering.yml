@@ -23,9 +23,9 @@ items:
     syntax:
       content: >-
         az network express-route peering create -g MyResourceGroup --circuit-name MyCircuit \
-                                    --peering-type MicrosoftPeering --peer-asn 10002 --vlan-id 103 \
-                                    --primary-peer-subnet 101.0.0.0/30 --secondary-peer-subnet 102.0.0.0/30 \
-                                    --advertised-public-prefixes 101.0.0.0/30
+            --peering-type MicrosoftPeering --peer-asn 10002 --vlan-id 103 \
+            --primary-peer-subnet 101.0.0.0/30 --secondary-peer-subnet 102.0.0.0/30 \
+            --advertised-public-prefixes 101.0.0.0/30
   parameters:
   - isRequired: true
     name: --circuit-name
@@ -79,10 +79,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+    path: src/azure-cli/azure/cli/command_modules/network/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+      path: src/azure-cli/azure/cli/command_modules/network/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_network_express_route_peering_delete
   name: az network express-route peering delete
@@ -111,10 +111,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+    path: src/azure-cli/azure/cli/command_modules/network/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+      path: src/azure-cli/azure/cli/command_modules/network/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_network_express_route_peering_list
   name: az network express-route peering list
@@ -139,10 +139,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+    path: src/azure-cli/azure/cli/command_modules/network/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+      path: src/azure-cli/azure/cli/command_modules/network/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_network_express_route_peering_show
   name: az network express-route peering show
@@ -171,10 +171,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+    path: src/azure-cli/azure/cli/command_modules/network/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+      path: src/azure-cli/azure/cli/command_modules/network/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_network_express_route_peering_update
   name: az network express-route peering update
@@ -187,8 +187,8 @@ items:
     syntax:
       content: >-
         az network express-route peering update -g MyResourceGroup --circuit-name MyCircuit \
-                                    --ip-version ipv6 --primary-peer-subnet 2002:db00::/126 \
-                                    --secondary-peer-subnet 2003:db00::/126 --advertised-public-prefixes 2002:db00::/126
+            --ip-version ipv6 --primary-peer-subnet 2002:db00::/126 \
+            --secondary-peer-subnet 2003:db00::/126 --advertised-public-prefixes 2002:db00::/126
   parameters:
   - name: --peer-asn
     summary: Autonomous system number of the customer/connectivity provider.
@@ -254,10 +254,10 @@ items:
     summary: 'Update an object by specifying a property path and value to set.  Example: --set property1.property2=<value>.'
     description: ''
   source:
-    path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+    path: src/azure-cli/azure/cli/command_modules/network/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+      path: src/azure-cli/azure/cli/command_modules/network/_help.py
       repo: https://github.com/Azure/azure-cli.git
 commands:
 - uid: az_network_express_route_peering_connection
@@ -281,6 +281,15 @@ commands:
 - uid: az_network_express_route_peering_list
   name: az network express-route peering list
   summary: List peering settings of an ExpressRoute circuit.
+- uid: az_network_express_route_peering_peer_connection
+  name: az network express-route peering peer-connection
+  summary: Manage ExpressRoute circuit peer connections.
+- uid: az_network_express_route_peering_peer_connection_list
+  name: az network express-route peering peer-connection list
+  summary: Gets all global reach peer connections associated with a private peering in an express route circuit.
+- uid: az_network_express_route_peering_peer_connection_show
+  name: az network express-route peering peer-connection show
+  summary: Gets the specified Peer Express Route Circuit Connection from the specified express route circuit.
 - uid: az_network_express_route_peering_show
   name: az network express-route peering show
   summary: Get the details of an express route peering.
@@ -301,9 +310,9 @@ globalParameters:
 - name: --verbose
   summary: Increase logging verbosity. Use --debug for full debug logs.
 doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-doc_source_url_path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
-original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
-gitcommit: https://github.com/Azure/azure-cli/blob/07420024dd79275c64afb8a8dd065b7b6e20d62f/src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
-updated_at: 4/11/2019 10:31:50 PM
-ms.date: 04/11/2019
+doc_source_url_path: src/azure-cli/azure/cli/command_modules/network/_help.py
+original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+gitcommit: https://github.com/Azure/azure-cli/blob/bb3fe1fee3d6ff608f0429241337e88a66f11043/src/azure-cli/azure/cli/command_modules/network/_help.py
+updated_at: 9/16/2019 10:22:16 AM
+ms.date: 09/16/2019
 description: Manage ExpressRoute peering of an ExpressRoute circuit.

@@ -26,11 +26,11 @@ items:
     summary: Users or groups to include as reviewers on a pull request. Space separated.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
 - uid: ext_azure-devops_az_repos_pr_reviewer_list
   name: az repos pr reviewer list
@@ -44,11 +44,11 @@ items:
     summary: ID of the pull request.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
 - uid: ext_azure-devops_az_repos_pr_reviewer_remove
   name: az repos pr reviewer remove
@@ -66,11 +66,11 @@ items:
     summary: Users or groups to remove as reviewers on a pull request. Space separated.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
 commands:
 - uid: ext_azure-devops_az_repos_pr_reviewer_add

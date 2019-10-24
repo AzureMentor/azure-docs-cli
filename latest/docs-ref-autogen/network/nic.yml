@@ -3,7 +3,7 @@ items:
 - uid: az_network_nic
   name: az network nic
   summary: Manage network interfaces.
-  description: To learn more about network interfaces in Azure visit <a href="https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-network-interface">https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-network-interface</a>.
+  description: To learn more about network interfaces in Azure visit <a href="https://docs.microsoft.com/azure/virtual-network/virtual-network-network-interface">https://docs.microsoft.com/azure/virtual-network/virtual-network-network-interface</a>.
   langs:
   - azurecli
   children:
@@ -29,12 +29,12 @@ items:
     syntax:
       content: >-
         az network nic create -g MyResourceGroup --vnet-name MyVnet --subnet MySubnet -n MyNic \
-                                    --ip-forwarding --network-security-group MyNsg
+            --ip-forwarding --network-security-group MyNsg
   - summary: Create a network interface for a specified subnet on a virtual network with network security group and application security groups.
     syntax:
       content: >-
         az network nic create -g MyResourceGroup --vnet-name MyVnet --subnet MySubnet -n MyNic \
-                                    --network-security-group MyNsg --application-security-groups Web App
+            --network-security-group MyNsg --application-security-groups Web App
   parameters:
   - isRequired: true
     name: --name -n
@@ -110,10 +110,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+    path: src/azure-cli/azure/cli/command_modules/network/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+      path: src/azure-cli/azure/cli/command_modules/network/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_network_nic_delete
   name: az network nic delete
@@ -142,10 +142,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+    path: src/azure-cli/azure/cli/command_modules/network/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+      path: src/azure-cli/azure/cli/command_modules/network/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_network_nic_list
   name: az network nic list
@@ -165,15 +165,15 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+    path: src/azure-cli/azure/cli/command_modules/network/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+      path: src/azure-cli/azure/cli/command_modules/network/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_network_nic_list_effective_nsg
   name: az network nic list-effective-nsg
   summary: List all effective network security groups applied to a network interface.
-  description: To learn more about troubleshooting using effective security rules visit <a href="https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-nsg-troubleshoot-portal">https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-nsg-troubleshoot-portal</a>.
+  description: To learn more about troubleshooting using effective security rules visit <a href="https://docs.microsoft.com/azure/virtual-network/virtual-network-nsg-troubleshoot-portal">https://docs.microsoft.com/azure/virtual-network/virtual-network-nsg-troubleshoot-portal</a>.
   langs:
   - azurecli
   examples:
@@ -194,10 +194,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+    path: src/azure-cli/azure/cli/command_modules/network/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+      path: src/azure-cli/azure/cli/command_modules/network/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_network_nic_show
   name: az network nic show
@@ -226,15 +226,15 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+    path: src/azure-cli/azure/cli/command_modules/network/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+      path: src/azure-cli/azure/cli/command_modules/network/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_network_nic_show_effective_route_table
   name: az network nic show-effective-route-table
   summary: Show the effective route table applied to a network interface.
-  description: To learn more about troubleshooting using the effective route tables visit <a href="https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-routes-troubleshoot-portal#using-effective-routes-to-troubleshoot-vm-traffic-flow">https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-routes-troubleshoot-portal#using-effective-routes-to-troubleshoot-vm-traffic-flow</a>.
+  description: To learn more about troubleshooting using the effective route tables visit <a href="https://docs.microsoft.com/azure/virtual-network/virtual-network-routes-troubleshoot-portal#using-effective-routes-to-troubleshoot-vm-traffic-flow">https://docs.microsoft.com/azure/virtual-network/virtual-network-routes-troubleshoot-portal#using-effective-routes-to-troubleshoot-vm-traffic-flow</a>.
   langs:
   - azurecli
   examples:
@@ -255,10 +255,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+    path: src/azure-cli/azure/cli/command_modules/network/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+      path: src/azure-cli/azure/cli/command_modules/network/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_network_nic_update
   name: az network nic update
@@ -270,6 +270,9 @@ items:
   - summary: Update a network interface to use a different network security group.
     syntax:
       content: az network nic update -g MyResourceGroup -n MyNic --network-security-group MyNewNsg
+  - summary: Update a network interface. (autogenerated)
+    syntax:
+      content: az network nic update --accelerated-networking true --name MyNic --resource-group MyResourceGroup
   parameters:
   - name: --accelerated-networking
     parameterValueGroup: false, true
@@ -316,10 +319,10 @@ items:
     summary: 'Update an object by specifying a property path and value to set.  Example: --set property1.property2=<value>.'
     description: ''
   source:
-    path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+    path: src/azure-cli/azure/cli/command_modules/network/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+      path: src/azure-cli/azure/cli/command_modules/network/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_network_nic_wait
   name: az network nic wait
@@ -371,10 +374,10 @@ items:
     summary: Wait until updated with provisioningState at 'Succeeded'.
     description: ''
   source:
-    path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+    path: src/azure-cli/azure/cli/command_modules/network/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
+      path: src/azure-cli/azure/cli/command_modules/network/_help.py
       repo: https://github.com/Azure/azure-cli.git
 commands:
 - uid: az_network_nic_create
@@ -451,9 +454,9 @@ globalParameters:
 - name: --verbose
   summary: Increase logging verbosity. Use --debug for full debug logs.
 doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-doc_source_url_path: src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
-original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
-gitcommit: https://github.com/Azure/azure-cli/blob/07420024dd79275c64afb8a8dd065b7b6e20d62f/src/command_modules/azure-cli-network/azure/cli/command_modules/network/_help.py
-updated_at: 4/11/2019 10:31:50 PM
-ms.date: 04/11/2019
-description: To learn more about network interfaces in Azure visit <a href="https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-network-interface">https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-network-interface</a>.
+doc_source_url_path: src/azure-cli/azure/cli/command_modules/network/_help.py
+original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+gitcommit: https://github.com/Azure/azure-cli/blob/bb3fe1fee3d6ff608f0429241337e88a66f11043/src/azure-cli/azure/cli/command_modules/network/_help.py
+updated_at: 9/16/2019 10:22:16 AM
+ms.date: 09/16/2019
+description: To learn more about network interfaces in Azure visit <a href="https://docs.microsoft.com/azure/virtual-network/virtual-network-network-interface">https://docs.microsoft.com/azure/virtual-network/virtual-network-network-interface</a>.

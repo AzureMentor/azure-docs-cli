@@ -2,7 +2,7 @@
 items:
 - uid: ext_azure-devops_az_artifacts_universal
   name: az artifacts universal
-  summary: (PREVIEW) Manage Universal Packages.
+  summary: Manage Universal Packages.
   description: ''
   langs:
   - azurecli
@@ -11,7 +11,7 @@ items:
   - ext_azure-devops_az_artifacts_universal_publish
 - uid: ext_azure-devops_az_artifacts_universal_download
   name: az artifacts universal download
-  summary: (PREVIEW) Download a package.
+  summary: Download a package.
   description: ''
   langs:
   - azurecli
@@ -33,15 +33,18 @@ items:
     summary: Version of the package, e.g. 1.0.0.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
+    description: ''
+  - name: --file-filter
+    summary: Wildcard filter for file download.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
 - uid: ext_azure-devops_az_artifacts_universal_publish
   name: az artifacts universal publish
-  summary: (PREVIEW) Publish a package to a feed.
+  summary: Publish a package to a feed.
   description: ''
   langs:
   - azurecli
@@ -66,19 +69,19 @@ items:
     summary: Description of the package.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
 commands:
 - uid: ext_azure-devops_az_artifacts_universal_download
   name: az artifacts universal download
-  summary: (PREVIEW) Download a package.
+  summary: Download a package.
 - uid: ext_azure-devops_az_artifacts_universal_publish
   name: az artifacts universal publish
-  summary: (PREVIEW) Publish a package to a feed.
+  summary: Publish a package to a feed.
 globalParameters:
 - name: --debug
   summary: Increase logging verbosity to show all debug logs.
@@ -92,4 +95,4 @@ globalParameters:
   summary: JMESPath query string. See <a href="http://jmespath.org/">http://jmespath.org/</a> for more information and examples.
 - name: --verbose
   summary: Increase logging verbosity. Use --debug for full debug logs.
-description: (PREVIEW) Manage Universal Packages.
+description: Manage Universal Packages.

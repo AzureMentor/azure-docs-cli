@@ -25,18 +25,17 @@ items:
     description: ''
   - isRequired: true
     name: --license-type
-    parameterValueGroup: advanced, earlyAdopter, express, none, professional, stakeholder
+    parameterValueGroup: advanced, earlyAdopter, express, professional, stakeholder
     summary: License type for the user.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
   - name: --send-email-invite
-    defaultValue: "true"
     parameterValueGroup: false, true
     summary: Whether to send email invite for new user or not.
     description: ''
@@ -48,11 +47,11 @@ items:
   - azurecli
   parameters:
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
   - name: --skip
     summary: 'Offset: Number of records to skip.'
@@ -73,11 +72,11 @@ items:
     summary: Email ID or ID of the user.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
   - name: --yes -y
     summary: Do not prompt for confirmation.
@@ -94,11 +93,11 @@ items:
     summary: Email ID or ID of the user.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
 - uid: ext_azure-devops_az_devops_user_update
   name: az devops user update
@@ -109,7 +108,7 @@ items:
   parameters:
   - isRequired: true
     name: --license-type
-    parameterValueGroup: advanced, earlyAdopter, express, none, professional, stakeholder
+    parameterValueGroup: advanced, earlyAdopter, express, professional, stakeholder
     summary: License type for the user.
     description: ''
   - isRequired: true
@@ -117,11 +116,11 @@ items:
     summary: Email ID or ID of the user.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
 commands:
 - uid: ext_azure-devops_az_devops_user_add

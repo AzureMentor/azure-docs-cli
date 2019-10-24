@@ -39,7 +39,7 @@ items:
     syntax:
       content: >-
         az network private-dns record-set soa update -g MyResourceGroup -z www.mysite.com \
-                                    -e myhostmaster.mysite.com
+            -e myhostmaster.mysite.com
   parameters:
   - isRequired: true
     name: --resource-group -g
@@ -54,9 +54,6 @@ items:
     description: ''
   - name: --expire-time -x
     summary: Expire time (seconds).
-    description: ''
-  - name: --host -t
-    summary: Host name.
     description: ''
   - name: --minimum-ttl -m
     summary: Minimum TTL (time-to-live, seconds).

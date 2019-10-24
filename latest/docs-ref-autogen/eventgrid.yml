@@ -2,18 +2,60 @@
 items:
 - uid: az_eventgrid
   name: az eventgrid
-  summary: Manage Azure Event Grid topics and subscriptions.
+  summary: Manage Azure Event Grid topics, event subscriptions, domains and domain topics.
   description: ''
   langs:
   - azurecli
   children: []
 commands:
+- uid: az_eventgrid_domain
+  name: az eventgrid domain
+  summary: Manage event domains.
+- uid: az_eventgrid_domain_create
+  name: az eventgrid domain create
+  summary: Create a domain.
+- uid: az_eventgrid_domain_delete
+  name: az eventgrid domain delete
+  summary: Delete a domain.
+- uid: az_eventgrid_domain_key
+  name: az eventgrid domain key
+  summary: Manage shared access keys of a domain.
+- uid: az_eventgrid_domain_key_list
+  name: az eventgrid domain key list
+  summary: List shared access keys of a domain.
+- uid: az_eventgrid_domain_key_regenerate
+  name: az eventgrid domain key regenerate
+  summary: Regenerate a shared access key of a domain.
+- uid: az_eventgrid_domain_list
+  name: az eventgrid domain list
+  summary: List available domains.
+- uid: az_eventgrid_domain_show
+  name: az eventgrid domain show
+  summary: Get the details of a domain.
+- uid: az_eventgrid_domain_topic
+  name: az eventgrid domain topic
+  summary: Manage event domain topics.
+- uid: az_eventgrid_domain_topic_create
+  name: az eventgrid domain topic create
+  summary: Create a domain topic under a domain.
+- uid: az_eventgrid_domain_topic_delete
+  name: az eventgrid domain topic delete
+  summary: Delete a domain topic under a domain.
+- uid: az_eventgrid_domain_topic_list
+  name: az eventgrid domain topic list
+  summary: List available topics in a domain.
+- uid: az_eventgrid_domain_topic_show
+  name: az eventgrid domain topic show
+  summary: Get the details of a domain topic.
+- uid: az_eventgrid_domain_update
+  name: az eventgrid domain update
+  summary: Update a domain.
 - uid: az_eventgrid_event_subscription
   name: az eventgrid event-subscription
-  summary: Manage event subscriptions for an Event Grid topic or for an Azure resource.
+  summary: Manage event subscriptions.
 - uid: az_eventgrid_event_subscription_create
   name: az eventgrid event-subscription create
-  summary: Create a new event subscription for an Event Grid topic or for an Azure resource.
+  summary: Create a new event subscription.
 - uid: az_eventgrid_event_subscription_delete
   name: az eventgrid event-subscription delete
   summary: Delete an event subscription.
@@ -79,9 +121,9 @@ globalParameters:
 - name: --verbose
   summary: Increase logging verbosity. Use --debug for full debug logs.
 doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-doc_source_url_path: src/command_modules/azure-cli-eventgrid/azure/cli/command_modules/eventgrid/_help.py
-original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/command_modules/azure-cli-eventgrid/azure/cli/command_modules/eventgrid/_help.py
-gitcommit: https://github.com/Azure/azure-cli/blob/b44b7963de8defb3e4d3abe9927590d1ef56874e/src/command_modules/azure-cli-eventgrid/azure/cli/command_modules/eventgrid/_help.py
-updated_at: 4/12/2019 2:53:01 PM
-ms.date: 04/12/2019
-description: Manage Azure Event Grid topics and subscriptions.
+doc_source_url_path: src/azure-cli/azure/cli/command_modules/eventgrid/_help.py
+original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventgrid/_help.py
+gitcommit: https://github.com/Azure/azure-cli/blob/66d392e0dd08f2e1841a23b62798b8d6c8ab5e9f/src/azure-cli/azure/cli/command_modules/eventgrid/_help.py
+updated_at: 9/17/2019 3:46:30 AM
+ms.date: 09/17/2019
+description: Manage Azure Event Grid topics, event subscriptions, domains and domain topics.

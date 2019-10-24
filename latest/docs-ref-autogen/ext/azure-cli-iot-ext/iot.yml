@@ -5,11 +5,27 @@ items:
   summary: Manage Internet of Things (IoT) assets. Augmented with the IoT extension.
   description: >-
     Review the extension wiki tips to maximize usage
-                                <a href="https://github.com/Azure/azure-iot-cli-extension/wiki/Tips">https://github.com/Azure/azure-iot-cli-extension/wiki/Tips</a>.
+
+    <a href="https://github.com/Azure/azure-iot-cli-extension/wiki/Tips">https://github.com/Azure/azure-iot-cli-extension/wiki/Tips</a>.
   langs:
   - azurecli
   children: []
 commands:
+- uid: ext_azure-cli-iot-ext_az_iot_central
+  name: az iot central
+  summary: Manage Azure IoT Central assets.
+- uid: ext_azure-cli-iot-ext_az_iot_central_app
+  name: az iot central app
+  summary: Manage Azure IoT Central applications.
+- uid: ext_azure-cli-iot-ext_az_iot_central_app_monitor_events
+  name: az iot central app monitor-events
+  summary: Monitor device telemetry & messages sent to the IoT Hub for an IoT Central app.
+- uid: ext_azure-cli-iot-ext_az_iot_central_device_twin
+  name: az iot central device-twin
+  summary: Manage IoT Central device twins.
+- uid: ext_azure-cli-iot-ext_az_iot_central_device_twin_show
+  name: az iot central device-twin show
+  summary: Get the device twin from IoT Hub.
 - uid: ext_azure-cli-iot-ext_az_iot_device
   name: az iot device
   summary: Leverage device-to-cloud and cloud-to-device messaging capabilities.
@@ -33,10 +49,20 @@ commands:
   summary: Send a cloud-to-device message.
 - uid: ext_azure-cli-iot-ext_az_iot_device_send_d2c_message
   name: az iot device send-d2c-message
-  summary: Send an mqtt device-to-cloud message.
+  summary: Send an mqtt device-to-cloud message. The command supports sending messages with application and system properties.
 - uid: ext_azure-cli-iot-ext_az_iot_device_simulate
   name: az iot device simulate
-  summary: Simulate a device in an Azure IoT Hub.
+  summary: >-
+    Simulate a device in an Azure IoT Hub.
+
+
+    While the device simulation is running, the device will automatically receive
+
+    and acknowledge cloud-to-device (c2d) messages. For mqtt simulation, all c2d messages will
+
+    be acknowledged with completion. For http simulation c2d acknowledgement is based on user
+
+    selection which can be complete, reject or abandon.
 - uid: ext_azure-cli-iot-ext_az_iot_device_upload_file
   name: az iot device upload-file
   summary: Upload a local file as a device to a pre-configured blob storage container.
@@ -91,6 +117,27 @@ commands:
 - uid: ext_azure-cli-iot-ext_az_iot_dps_registration_show
   name: az iot dps registration show
   summary: Get the device registration state in an Azure IoT Hub Device Provisioning Service.
+- uid: ext_azure-cli-iot-ext_az_iot_dt
+  name: az iot dt
+  summary: Manage digital twin of an IoT Plug and Play device.
+- uid: ext_azure-cli-iot-ext_az_iot_dt_invoke_command
+  name: az iot dt invoke-command
+  summary: Executes a command on an IoT Plug and Play device.
+- uid: ext_azure-cli-iot-ext_az_iot_dt_list_commands
+  name: az iot dt list-commands
+  summary: List commands of an IoT Plug and Play devices interface(s).
+- uid: ext_azure-cli-iot-ext_az_iot_dt_list_interfaces
+  name: az iot dt list-interfaces
+  summary: List interfaces of a target IoT Plug and Play device.
+- uid: ext_azure-cli-iot-ext_az_iot_dt_list_properties
+  name: az iot dt list-properties
+  summary: List properties of a target IoT Plug and Play device interface(s).
+- uid: ext_azure-cli-iot-ext_az_iot_dt_monitor_events
+  name: az iot dt monitor-events
+  summary: Monitor Digital Twin events.
+- uid: ext_azure-cli-iot-ext_az_iot_dt_update_property
+  name: az iot dt update-property
+  summary: Update an IoT Plug and Play device interfaces writable property.
 - uid: ext_azure-cli-iot-ext_az_iot_edge
   name: az iot edge
   summary: Manage IoT solutions on the Edge.
@@ -114,16 +161,22 @@ commands:
   summary: Evaluate a target system metric defined in an IoT Edge deployment.
 - uid: ext_azure-cli-iot-ext_az_iot_edge_deployment_update
   name: az iot edge deployment update
-  summary: Update an IoT Edge deployment with the specified properties.
+  summary: >-
+    Update specified properties of an IoT Edge deployment.
+
+
+    Use --set followed by property assignments for updating a deployment.
+
+
+    Note: IoT Edge deployment content is immutable. Deployment properties that can be
+
+    updated are 'labels', 'metrics', 'priority' and 'targetCondition'.
 - uid: ext_azure-cli-iot-ext_az_iot_edge_set_modules
   name: az iot edge set-modules
   summary: Set edge modules on a single device.
 - uid: ext_azure-cli-iot-ext_az_iot_hub
   name: az iot hub
   summary: Manage entities in an Azure IoT Hub.
-- uid: ext_azure-cli-iot-ext_az_iot_hub_apply_configuration
-  name: az iot hub apply-configuration
-  summary: Apply a deployment manifest to a single device.
 - uid: ext_azure-cli-iot-ext_az_iot_hub_configuration
   name: az iot hub configuration
   summary: Manage IoT device configurations at scale.
@@ -199,9 +252,18 @@ commands:
 - uid: ext_azure-cli-iot-ext_az_iot_hub_device_twin_update
   name: az iot hub device-twin update
   summary: Update device twin definition.
+- uid: ext_azure-cli-iot-ext_az_iot_hub_distributed_tracing
+  name: az iot hub distributed-tracing
+  summary: Manage distributed settings per-device.
+- uid: ext_azure-cli-iot-ext_az_iot_hub_distributed_tracing_show
+  name: az iot hub distributed-tracing show
+  summary: Get the distributed tracing settings for a device.
+- uid: ext_azure-cli-iot-ext_az_iot_hub_distributed_tracing_update
+  name: az iot hub distributed-tracing update
+  summary: Update the distributed tracing options for a device.
 - uid: ext_azure-cli-iot-ext_az_iot_hub_generate_sas_token
   name: az iot hub generate-sas-token
-  summary: Generate a SAS token for a target IoT Hub or device.
+  summary: Generate a SAS token for a target IoT Hub, device or module.
 - uid: ext_azure-cli-iot-ext_az_iot_hub_invoke_device_method
   name: az iot hub invoke-device-method
   summary: Invoke a device method.
@@ -250,6 +312,51 @@ commands:
 - uid: ext_azure-cli-iot-ext_az_iot_hub_query
   name: az iot hub query
   summary: Query an IoT Hub using a powerful SQL-like language.
+- uid: ext_azure-cli-iot-ext_az_iot_pnp
+  name: az iot pnp
+  summary: Manage entities of an IoT Plug and Play model repository.
+- uid: ext_azure-cli-iot-ext_az_iot_pnp_capability_model
+  name: az iot pnp capability-model
+  summary: Manage device capability models in an IoT Plug and Play model repository.
+- uid: ext_azure-cli-iot-ext_az_iot_pnp_capability_model_create
+  name: az iot pnp capability-model create
+  summary: Create a capability-model in the company repository.
+- uid: ext_azure-cli-iot-ext_az_iot_pnp_capability_model_delete
+  name: az iot pnp capability-model delete
+  summary: Delete the capability-model in the company repository.
+- uid: ext_azure-cli-iot-ext_az_iot_pnp_capability_model_list
+  name: az iot pnp capability-model list
+  summary: List all capability-model.
+- uid: ext_azure-cli-iot-ext_az_iot_pnp_capability_model_publish
+  name: az iot pnp capability-model publish
+  summary: Publish the capability-model to public repository.
+- uid: ext_azure-cli-iot-ext_az_iot_pnp_capability_model_show
+  name: az iot pnp capability-model show
+  summary: Get the details of a capability-model.
+- uid: ext_azure-cli-iot-ext_az_iot_pnp_capability_model_update
+  name: az iot pnp capability-model update
+  summary: Update the capability-model in the company repository.
+- uid: ext_azure-cli-iot-ext_az_iot_pnp_interface
+  name: az iot pnp interface
+  summary: Manage interfaces in an IoT Plug and Play model repository.
+- uid: ext_azure-cli-iot-ext_az_iot_pnp_interface_create
+  name: az iot pnp interface create
+  summary: Create an interface in the company repository.
+- uid: ext_azure-cli-iot-ext_az_iot_pnp_interface_delete
+  name: az iot pnp interface delete
+  summary: Delete an interface in the company repository.
+- uid: ext_azure-cli-iot-ext_az_iot_pnp_interface_list
+  name: az iot pnp interface list
+  summary: List all interfaces.
+- uid: ext_azure-cli-iot-ext_az_iot_pnp_interface_publish
+  name: az iot pnp interface publish
+  summary: Publish an interface to public repository.
+- uid: ext_azure-cli-iot-ext_az_iot_pnp_interface_show
+  name: az iot pnp interface show
+  summary: Get the details of an interface.
+- uid: ext_azure-cli-iot-ext_az_iot_pnp_interface_update
+  name: az iot pnp interface update
+  summary: Update an interface in the company repository.
 globalParameters:
 - name: --debug
   summary: Increase logging verbosity to show all debug logs.
@@ -265,4 +372,5 @@ globalParameters:
   summary: Increase logging verbosity. Use --debug for full debug logs.
 description: >-
   Review the extension wiki tips to maximize usage
-                              <a href="https://github.com/Azure/azure-iot-cli-extension/wiki/Tips">https://github.com/Azure/azure-iot-cli-extension/wiki/Tips</a>.
+
+  <a href="https://github.com/Azure/azure-iot-cli-extension/wiki/Tips">https://github.com/Azure/azure-iot-cli-extension/wiki/Tips</a>.

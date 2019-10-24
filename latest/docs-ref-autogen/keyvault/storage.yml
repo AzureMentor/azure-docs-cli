@@ -28,7 +28,20 @@ items:
   examples:
   - summary: Create a storage account and setup a vault to manage its keys
     syntax:
-      content: "$id = az storage account create -g resourcegroup -n storageacct --query id\n                        \n                        # assign the Azure Key Vault service the \"Storage Account Key Operator Service Role\" role.\n                        az role assignment create --role \"Storage Account Key Operator Service Role\" --scope $id \\\n                        --assignee cfa8b339-82a2-471a-a3c9-0fc0be7a4093\n                        \n                        az keyvault storage add --vault-name vault -n storageacct --active-key-name key1    \\\n                        --auto-regenerate-key --regeneration-period P90D  --resource-id $id"
+      content: >-
+        $id = az storage account create -g resourcegroup -n storageacct --query id
+
+
+        # assign the Azure Key Vault service the "Storage Account Key Operator Service Role" role.
+
+        az role assignment create --role "Storage Account Key Operator Service Role" --scope $id \
+
+        --assignee cfa8b339-82a2-471a-a3c9-0fc0be7a4093
+
+
+        az keyvault storage add --vault-name vault -n storageacct --active-key-name key1    \
+
+        --auto-regenerate-key --regeneration-period P90D  --resource-id $id
   parameters:
   - isRequired: true
     name: --active-key-name
@@ -64,10 +77,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+    path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+      path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_keyvault_storage_backup
   name: az keyvault storage backup
@@ -93,10 +106,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+    path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+      path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_keyvault_storage_list
   name: az keyvault storage list
@@ -116,10 +129,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+    path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+      path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_keyvault_storage_list_deleted
   name: az keyvault storage list-deleted
@@ -139,10 +152,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+    path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+      path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_keyvault_storage_purge
   name: az keyvault storage purge
@@ -163,10 +176,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+    path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+      path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_keyvault_storage_recover
   name: az keyvault storage recover
@@ -187,10 +200,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+    path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+      path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_keyvault_storage_regenerate_key
   name: az keyvault storage regenerate-key
@@ -216,10 +229,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+    path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+      path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_keyvault_storage_remove
   name: az keyvault storage remove
@@ -241,10 +254,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+    path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+      path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_keyvault_storage_restore
   name: az keyvault storage restore
@@ -254,8 +267,8 @@ items:
   - azurecli
   parameters:
   - isRequired: true
-    name: --file-path
-    summary: ''
+    name: --file -f
+    summary: Local key backup from which to restore storage account.
     description: ''
   - isRequired: true
     name: --vault-name
@@ -265,10 +278,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+    path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+      path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_keyvault_storage_show
   name: az keyvault storage show
@@ -290,10 +303,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+    path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+      path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_keyvault_storage_show_deleted
   name: az keyvault storage show-deleted
@@ -314,10 +327,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+    path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+      path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_keyvault_storage_update
   name: az keyvault storage update
@@ -356,10 +369,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+    path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
+      path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
       repo: https://github.com/Azure/azure-cli.git
 commands:
 - uid: az_keyvault_storage_add
@@ -439,9 +452,9 @@ globalParameters:
 - name: --verbose
   summary: Increase logging verbosity. Use --debug for full debug logs.
 doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-doc_source_url_path: src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
-original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
-gitcommit: https://github.com/Azure/azure-cli/blob/489bfb145dd245e5dd82abed2d9d8b4812b07f9e/src/command_modules/azure-cli-keyvault/azure/cli/command_modules/keyvault/_help.py
-updated_at: 4/3/2019 2:59:03 PM
-ms.date: 04/03/2019
+doc_source_url_path: src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+gitcommit: https://github.com/Azure/azure-cli/blob/844005a08d19ab7a5544aa9147869e101426ea67/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+updated_at: 8/20/2019 5:09:19 AM
+ms.date: 08/20/2019
 description: Manage storage accounts.

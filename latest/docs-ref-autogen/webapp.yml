@@ -9,6 +9,7 @@ items:
   children:
   - az_webapp_browse
   - az_webapp_create
+  - az_webapp_create_remote_connection
   - az_webapp_delete
   - az_webapp_list
   - az_webapp_list_runtimes
@@ -61,6 +62,15 @@ items:
   - summary: Create a web app with a NodeJS 6.2 runtime and deployed from a local git repository.
     syntax:
       content: az webapp create -g MyResourceGroup -p MyPlan -n MyUniqueAppName --runtime "node|6.2" --deployment-local-git
+  - summary: Create a web app with an image from DockerHub.
+    syntax:
+      content: az webapp create -g MyResourceGroup -p MyPlan -n MyUniqueAppName -i nginx
+  - summary: Create a web app with an image from a private DockerHub registry.
+    syntax:
+      content: az webapp create -g MyResourceGroup -p MyPlan -n MyUniqueAppName -i MyImageName -s username -w password
+  - summary: Create a web app with an image from a private Azure Container Registry.
+    syntax:
+      content: az webapp create -g MyResourceGroup -p MyPlan -n MyUniqueAppName -i myregistry.azurecr.io/docker-image:tag
   parameters:
   - isRequired: true
     name: --name -n
@@ -87,6 +97,12 @@ items:
   - name: --deployment-source-url -u
     summary: Git repository URL to link with manual integration.
     description: ''
+  - name: --docker-registry-server-password -w
+    summary: The container registry server password. Required for private registries.
+    description: ''
+  - name: --docker-registry-server-user -s
+    summary: The container registry server username.
+    description: ''
   - name: --multicontainer-config-file
     summary: Linux only. Config file for multicontainer apps. (local or remote).
     description: ''
@@ -102,6 +118,34 @@ items:
     description: ''
   - name: --tags
     summary: Space-separated tags in 'key[=value]' format. Use "" to clear existing tags.
+    description: ''
+  - name: --subscription
+    summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
+    description: ''
+- uid: az_webapp_create_remote_connection
+  name: az webapp create-remote-connection
+  summary: Creates a remote connection using a tcp tunnel to your web app.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - name: --port -p
+    summary: 'Port for the remote connection. Default: Random available port.'
+    description: ''
+  - name: --slot -s
+    summary: The name of the slot. Default to the productions slot if not specified.
+    description: ''
+  - name: --timeout -t
+    summary: Timeout in seconds. Defaults to none.
+    description: ''
+  - name: --ids
+    summary: One or more resource IDs (space-delimited). If provided, no other 'Resource Id' arguments should be specified.
+    description: ''
+  - name: --name -n
+    summary: Name of the web app. You can configure the default using 'az configure --defaults web=<name>'.
+    description: ''
+  - name: --resource-group -g
+    summary: Name of resource group. You can configure the default group using `az configure --defaults group=&lt;name&gt;`.
     description: ''
   - name: --subscription
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
@@ -228,7 +272,7 @@ items:
     description: ''
 - uid: az_webapp_ssh
   name: az webapp ssh
-  summary: (Preview) SSH command establishes a ssh session to the web container and developer would get a shell terminal remotely.
+  summary: SSH command establishes a ssh session to the web container and developer would get a shell terminal remotely.
   description: ''
   langs:
   - azurecli
@@ -237,6 +281,9 @@ items:
     syntax:
       content: az webapp ssh -n MyUniqueAppName -g MyResourceGroup
   parameters:
+  - name: --port -p
+    summary: 'Port for the remote connection. Default: Random available port.'
+    description: ''
   - name: --slot -s
     summary: The name of the slot. Default to the productions slot if not specified.
     description: ''
@@ -342,15 +389,21 @@ items:
   - name: --logs
     summary: Configure default logging required to enable viewing log stream immediately after launching the webapp.
     description: ''
+  - name: --plan -p
+    summary: Name of the appserviceplan associated with the webapp.
+    description: ''
   - name: --sku
-    parameterValueGroup: B1, B2, B3, D1, F1, FREE, P1, P1V2, P2, P2V2, P3, P3V2, PC2, PC3, PC4, S1, S2, S3, SHARED
-    summary: The pricing tiers, e.g., F1(Free), D1(Shared), B1(Basic Small), B2(Basic Medium), B3(Basic Large), S1(Standard Small), P1(Premium Small), P1V2(Premium V2 Small), PC2 (Premium Container Small), PC3 (Premium Container Medium), PC4 (Premium Container Large).
+    parameterValueGroup: B1, B2, B3, D1, F1, FREE, I1, I2, I3, P1V2, P2V2, P3V2, PC2, PC3, PC4, S1, S2, S3, SHARED
+    summary: The pricing tiers, e.g., F1(Free), D1(Shared), B1(Basic Small), B2(Basic Medium), B3(Basic Large), S1(Standard Small), P1V2(Premium V2 Small), PC2 (Premium Container Small), PC3 (Premium Container Medium), PC4 (Premium Container Large).
     description: ''
   - name: --ids
     summary: One or more resource IDs (space-delimited). If provided, no other 'Resource Id' arguments should be specified.
     description: ''
   - name: --name -n
     summary: Name of the web app. You can configure the default using 'az configure --defaults web=<name>'.
+    description: ''
+  - name: --resource-group -g
+    summary: Name of resource group. You can configure the default group using `az configure --defaults group=&lt;name&gt;`.
     description: ''
   - name: --subscription
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
@@ -380,7 +433,7 @@ items:
     description: ''
   - name: --skip-custom-domain-verification
     parameterValueGroup: false, true
-    summary: If true, custom (non *.azurewebsites.net) domains associated with web app are not verified.
+    summary: If true, custom (non \*.azurewebsites.net) domains associated with web app are not verified.
     description: ''
   - name: --skip-dns-registration
     parameterValueGroup: false, true
@@ -433,9 +486,24 @@ commands:
 - uid: az_webapp_config
   name: az webapp config
   summary: Configure a web app.
+- uid: az_webapp_config_access_restriction
+  name: az webapp config access-restriction
+  summary: Methods that show, set, add, and remove access restrictions on a webapp.
+- uid: az_webapp_config_access_restriction_add
+  name: az webapp config access-restriction add
+  summary: Adds an Access Restriction to the webapp, or updates if the Action of the Ip-Address or Subnet already exists.
+- uid: az_webapp_config_access_restriction_remove
+  name: az webapp config access-restriction remove
+  summary: Removes an Access Restriction from the webapp.
+- uid: az_webapp_config_access_restriction_set
+  name: az webapp config access-restriction set
+  summary: Sets if SCM site is using the same restrictions as the main site.
+- uid: az_webapp_config_access_restriction_show
+  name: az webapp config access-restriction show
+  summary: Show Access Restriction settings for webapp.
 - uid: az_webapp_config_appsettings
   name: az webapp config appsettings
-  summary: Configure web app settings.
+  summary: Configure web app settings. Updating or removing application settings will cause an app recycle.
 - uid: az_webapp_config_appsettings_delete
   name: az webapp config appsettings delete
   summary: Delete web app settings.
@@ -565,6 +633,9 @@ commands:
 - uid: az_webapp_create
   name: az webapp create
   summary: Create a web app.
+- uid: az_webapp_create_remote_connection
+  name: az webapp create-remote-connection
+  summary: Creates a remote connection using a tcp tunnel to your web app.
 - uid: az_webapp_delete
   name: az webapp delete
   summary: Delete a web app.
@@ -646,6 +717,18 @@ commands:
 - uid: az_webapp_deployment_user_show
   name: az webapp deployment user show
   summary: Gets publishing user.
+- uid: az_webapp_hybrid_connection
+  name: az webapp hybrid-connection
+  summary: Methods that list, add and remove hybrid-connections from webapps.
+- uid: az_webapp_hybrid_connection_add
+  name: az webapp hybrid-connection add
+  summary: Add a hybrid-connection to a webapp.
+- uid: az_webapp_hybrid_connection_list
+  name: az webapp hybrid-connection list
+  summary: List the hybrid-connections on a webapp.
+- uid: az_webapp_hybrid_connection_remove
+  name: az webapp hybrid-connection remove
+  summary: Remove a hybrid-connection from a webapp.
 - uid: az_webapp_identity
   name: az webapp identity
   summary: Manage web app's managed service identity.
@@ -687,7 +770,7 @@ commands:
   summary: Get the details of a web app.
 - uid: az_webapp_ssh
   name: az webapp ssh
-  summary: (Preview) SSH command establishes a ssh session to the web container and developer would get a shell terminal remotely.
+  summary: SSH command establishes a ssh session to the web container and developer would get a shell terminal remotely.
 - uid: az_webapp_start
   name: az webapp start
   summary: Start a web app.
@@ -712,6 +795,18 @@ commands:
 - uid: az_webapp_update
   name: az webapp update
   summary: Update a web app.
+- uid: az_webapp_vnet_integration
+  name: az webapp vnet-integration
+  summary: Methods that list, add, and remove virtual network integrations from a webapp.
+- uid: az_webapp_vnet_integration_add
+  name: az webapp vnet-integration add
+  summary: Add a regional virtual network integration to a webapp.
+- uid: az_webapp_vnet_integration_list
+  name: az webapp vnet-integration list
+  summary: List the virtual network integrations on a webapp.
+- uid: az_webapp_vnet_integration_remove
+  name: az webapp vnet-integration remove
+  summary: Remove a regional virtual network integration from webapp.
 - uid: az_webapp_webjob
   name: az webapp webjob
   summary: Allows management operations for webjobs on a web app.

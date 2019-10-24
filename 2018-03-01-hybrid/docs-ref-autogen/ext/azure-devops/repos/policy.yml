@@ -15,7 +15,7 @@ items:
 - uid: ext_azure-devops_az_repos_policy_create
   name: az repos policy create
   summary: Create a policy using a configuration file.
-  description: Recommended when creating policies using multiple scopes for a policy. See <a href="https://aka.ms/azure-devops-cli-docs">https://aka.ms/azure-devops-cli-docs</a> for more information.
+  description: Recommended when creating policies using multiple scopes for a policy. See <a href="https://aka.ms/azure-devops-cli-docs-policy-file">https://aka.ms/azure-devops-cli-docs-policy-file</a> for more information.
   langs:
   - azurecli
   parameters:
@@ -24,14 +24,14 @@ items:
     summary: Local file path for configuration file. Please use / backslash when typing in directory path.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
   - name: --project -p
-    summary: Name or ID of the project.
+    summary: Name or ID of the project. You can configure the default project using az devops configure -d project=NAME_OR_ID. Required if not configured as default or picked up via git config.
     description: ''
 - uid: ext_azure-devops_az_repos_policy_delete
   name: az repos policy delete
@@ -45,14 +45,14 @@ items:
     summary: ID of the policy.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
   - name: --project -p
-    summary: Name or ID of the project.
+    summary: Name or ID of the project. You can configure the default project using az devops configure -d project=NAME_OR_ID. Required if not configured as default or picked up via git config.
     description: ''
   - name: --yes -y
     summary: Do not prompt for confirmation.
@@ -68,14 +68,14 @@ items:
     summary: 'Branch name to filter results by exact match of branch name. The --repository-id parameter is required to use the branch filter. For example: --branch master.'
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
   - name: --project -p
-    summary: Name or ID of the project.
+    summary: Name or ID of the project. You can configure the default project using az devops configure -d project=NAME_OR_ID. Required if not configured as default or picked up via git config.
     description: ''
   - name: --repository-id
     summary: ID of the repository to filter results by exact match of the repository ID. For example --repository-ID e556f204-53c9-4153-9cd9-ef41a11e3345.
@@ -92,19 +92,19 @@ items:
     summary: ID of the policy.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
   - name: --project -p
-    summary: Name or ID of the project.
+    summary: Name or ID of the project. You can configure the default project using az devops configure -d project=NAME_OR_ID. Required if not configured as default or picked up via git config.
     description: ''
 - uid: ext_azure-devops_az_repos_policy_update
   name: az repos policy update
   summary: Update a policy using a configuration file.
-  description: Recommended when creating policies using multiple scopes for a policy. See <a href="https://aka.ms/azure-devops-cli-docs">https://aka.ms/azure-devops-cli-docs</a> for more information.
+  description: Recommended when creating policies using multiple scopes for a policy. See <a href="https://aka.ms/azure-devops-cli-docs-policy-file">https://aka.ms/azure-devops-cli-docs-policy-file</a> for more information.
   langs:
   - azurecli
   parameters:
@@ -117,14 +117,14 @@ items:
     summary: ID of the policy.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
   - name: --project -p
-    summary: Name or ID of the project.
+    summary: Name or ID of the project. You can configure the default project using az devops configure -d project=NAME_OR_ID. Required if not configured as default or picked up via git config.
     description: ''
 commands:
 - uid: ext_azure-devops_az_repos_policy_approver_count

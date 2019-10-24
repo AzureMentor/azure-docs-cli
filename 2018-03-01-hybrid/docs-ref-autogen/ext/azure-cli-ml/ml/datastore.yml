@@ -1,0 +1,599 @@
+### YamlMime:UniversalReference
+items:
+- uid: ext_azure-cli-ml_az_ml_datastore
+  name: az ml datastore
+  summary: Commands for managing and using datastores with the Azure ML Workspace.
+  description: ''
+  langs:
+  - azurecli
+  children:
+  - ext_azure-cli-ml_az_ml_datastore_attach_adls
+  - ext_azure-cli-ml_az_ml_datastore_attach_blob
+  - ext_azure-cli-ml_az_ml_datastore_attach_dbfs
+  - ext_azure-cli-ml_az_ml_datastore_attach_file
+  - ext_azure-cli-ml_az_ml_datastore_attach_psqldb
+  - ext_azure-cli-ml_az_ml_datastore_attach_sqldb
+  - ext_azure-cli-ml_az_ml_datastore_detach
+  - ext_azure-cli-ml_az_ml_datastore_download
+  - ext_azure-cli-ml_az_ml_datastore_list
+  - ext_azure-cli-ml_az_ml_datastore_set_default
+  - ext_azure-cli-ml_az_ml_datastore_show
+  - ext_azure-cli-ml_az_ml_datastore_show_default
+  - ext_azure-cli-ml_az_ml_datastore_upload
+- uid: ext_azure-cli-ml_az_ml_datastore_attach_adls
+  name: az ml datastore attach-adls
+  summary: Attach an ADLS datastore.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - isRequired: true
+    name: --client-id
+    summary: The service principal/application ID.
+    description: ''
+  - isRequired: true
+    name: --client-secret
+    summary: The service principal's secret.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: The datastore name.
+    description: ''
+  - isRequired: true
+    name: --store-name -c
+    summary: The ADLS store name.
+    description: ''
+  - isRequired: true
+    name: --tenant-id
+    summary: The service principal Tenant ID.
+    description: ''
+  - name: --adls-resource-group
+    summary: The resource group the ADLS store belongs to.
+    description: ''
+  - name: --adls-subscription-id
+    summary: The ID of the subscription the ADLS store belongs to.
+    description: ''
+  - name: --authority-url
+    defaultValue: <a href="https://login.microsoftonline.com">https://login.microsoftonline.com</a>
+    summary: Authority url used to authenticate the user.
+    description: ''
+  - name: --include-secret
+    summary: Show the registered secret for the datastores.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --resource-url
+    defaultValue: <a href="https://datalake.azure.net/">https://datalake.azure.net/</a>
+    summary: Determines what operations will be performed on the data lake store. Defaults to <a href="https://datalake.azure.net/">https://datalake.azure.net/</a> allowing for filesystem operations.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+- uid: ext_azure-cli-ml_az_ml_datastore_attach_blob
+  name: az ml datastore attach-blob
+  summary: Attach a blob storage datastore.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - isRequired: true
+    name: --account-name -a
+    summary: The name of the storage account.
+    description: ''
+  - isRequired: true
+    name: --container-name -c
+    summary: The blob container name.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: The datastore name.
+    description: ''
+  - name: --account-key -k
+    summary: The storage account key.
+    description: ''
+  - name: --endpoint
+    defaultValue: core.windows.net
+    summary: The endpoint of the blob container. Defaults to core.windows.net.
+    description: ''
+  - name: --include-secret
+    summary: Show the registered secret for the datastores.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --protocol
+    defaultValue: https
+    summary: Protocol to use to connect to the blob container. If not specified, defaults to https.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --sas-token
+    summary: A SAS token for the blob container.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+- uid: ext_azure-cli-ml_az_ml_datastore_attach_dbfs
+  name: az ml datastore attach-dbfs
+  summary: Attach a Databricks File System datastore.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - isRequired: true
+    name: --name -n
+    summary: The datastore name.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+- uid: ext_azure-cli-ml_az_ml_datastore_attach_file
+  name: az ml datastore attach-file
+  summary: Attach a file share datastore.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - isRequired: true
+    name: --account-name -a
+    summary: The name of the storage account.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: The datastore name.
+    description: ''
+  - isRequired: true
+    name: --share-name -c
+    summary: The file share name.
+    description: ''
+  - name: --account-key -k
+    summary: The storage account key.
+    description: ''
+  - name: --endpoint
+    defaultValue: core.windows.net
+    summary: The endpoint of the blob container. Defaults to core.windows.net.
+    description: ''
+  - name: --include-secret
+    summary: Show the registered secret for the datastores.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --protocol
+    defaultValue: https
+    summary: Protocol to use to connect to the blob container. If not specified, defaults to https.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --sas-token
+    summary: A SAS token for the blob container.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+- uid: ext_azure-cli-ml_az_ml_datastore_attach_psqldb
+  name: az ml datastore attach-psqldb
+  summary: Attach an Azure PostgreSQL datastore.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - isRequired: true
+    name: --database-name -d
+    summary: The database name.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: The datastore name.
+    description: ''
+  - isRequired: true
+    name: --password -p
+    summary: The password.
+    description: ''
+  - isRequired: true
+    name: --server-name
+    summary: The SQL/PostgreSQL server name.
+    description: ''
+  - isRequired: true
+    name: --user-id -u
+    summary: The user ID.
+    description: ''
+  - name: --endpoint
+    defaultValue: postgres.database.azure.com
+    summary: The endpoint of the server. Defaults to postgres.database.azure.com.
+    description: ''
+  - name: --include-secret
+    summary: Show the registered secret for the datastores.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --port
+    defaultValue: "5432"
+    summary: The port number.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+- uid: ext_azure-cli-ml_az_ml_datastore_attach_sqldb
+  name: az ml datastore attach-sqldb
+  summary: Attach an Azure SQL datastore.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - isRequired: true
+    name: --client-id
+    summary: The service principal/application ID.
+    description: ''
+  - isRequired: true
+    name: --client-secret
+    summary: The service principal's secret.
+    description: ''
+  - isRequired: true
+    name: --database-name -d
+    summary: The database name.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: The datastore name.
+    description: ''
+  - isRequired: true
+    name: --server-name
+    summary: The SQL/PostgreSQL server name.
+    description: ''
+  - isRequired: true
+    name: --tenant-id
+    summary: The service principal Tenant ID.
+    description: ''
+  - name: --authority-url
+    defaultValue: <a href="https://login.microsoftonline.com">https://login.microsoftonline.com</a>
+    summary: Authority url used to authenticate the user.
+    description: ''
+  - name: --endpoint
+    defaultValue: database.windows.net
+    summary: The endpoint of the sql server. Defaults to database.windows.net.
+    description: ''
+  - name: --include-secret
+    summary: Show the registered secret for the datastores.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --resource-url
+    defaultValue: <a href="https://database.windows.net/">https://database.windows.net/</a>
+    summary: Determines what operations will be performed on the database.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+- uid: ext_azure-cli-ml_az_ml_datastore_detach
+  name: az ml datastore detach
+  summary: Detach a datastore by name.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - isRequired: true
+    name: --name -n
+    summary: The datastore name.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+- uid: ext_azure-cli-ml_az_ml_datastore_download
+  name: az ml datastore download
+  summary: Download files from a Datastore.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - isRequired: true
+    name: --name -n
+    summary: The datastore name.
+    description: ''
+  - isRequired: true
+    name: --target-path -d
+    summary: Target path for the downloaded files.
+    description: ''
+  - name: --hide-progress
+    summary: Whether to hide progress of operation.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --overwrite
+    summary: Overwrite target files if they exist.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --prefix -p
+    summary: Path filter for files to download. If none is provided, downloads everything.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+- uid: ext_azure-cli-ml_az_ml_datastore_list
+  name: az ml datastore list
+  summary: List datastores in the workspace.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - name: --include-secret
+    summary: Show the registered secret for the datastores.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+- uid: ext_azure-cli-ml_az_ml_datastore_set_default
+  name: az ml datastore set-default
+  summary: Set the workspace default datastore by name.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - isRequired: true
+    name: --name -n
+    summary: The datastore name.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+- uid: ext_azure-cli-ml_az_ml_datastore_show
+  name: az ml datastore show
+  summary: Show a single datastore by name.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - isRequired: true
+    name: --name -n
+    summary: The datastore name.
+    description: ''
+  - name: --include-secret
+    summary: Show the registered secret for the datastores.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+- uid: ext_azure-cli-ml_az_ml_datastore_show_default
+  name: az ml datastore show-default
+  summary: Show the workspace default datastore.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - name: --include-secret
+    summary: Show the registered secret for the datastores.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+- uid: ext_azure-cli-ml_az_ml_datastore_upload
+  name: az ml datastore upload
+  summary: Upload files to a Datastore.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - isRequired: true
+    name: --name -n
+    summary: The datastore name.
+    description: ''
+  - isRequired: true
+    name: --src-path -p
+    summary: Path from which to upload data.
+    description: ''
+  - name: --hide-progress
+    summary: Whether to hide progress of operation.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --overwrite
+    summary: Overwrite target files if they exist.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --target-path -u
+    summary: Path to upload data in the container. Uploads to the root by default.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+commands:
+- uid: ext_azure-cli-ml_az_ml_datastore_attach_adls
+  name: az ml datastore attach-adls
+  summary: Attach an ADLS datastore.
+- uid: ext_azure-cli-ml_az_ml_datastore_attach_blob
+  name: az ml datastore attach-blob
+  summary: Attach a blob storage datastore.
+- uid: ext_azure-cli-ml_az_ml_datastore_attach_dbfs
+  name: az ml datastore attach-dbfs
+  summary: Attach a Databricks File System datastore.
+- uid: ext_azure-cli-ml_az_ml_datastore_attach_file
+  name: az ml datastore attach-file
+  summary: Attach a file share datastore.
+- uid: ext_azure-cli-ml_az_ml_datastore_attach_psqldb
+  name: az ml datastore attach-psqldb
+  summary: Attach an Azure PostgreSQL datastore.
+- uid: ext_azure-cli-ml_az_ml_datastore_attach_sqldb
+  name: az ml datastore attach-sqldb
+  summary: Attach an Azure SQL datastore.
+- uid: ext_azure-cli-ml_az_ml_datastore_detach
+  name: az ml datastore detach
+  summary: Detach a datastore by name.
+- uid: ext_azure-cli-ml_az_ml_datastore_download
+  name: az ml datastore download
+  summary: Download files from a Datastore.
+- uid: ext_azure-cli-ml_az_ml_datastore_list
+  name: az ml datastore list
+  summary: List datastores in the workspace.
+- uid: ext_azure-cli-ml_az_ml_datastore_set_default
+  name: az ml datastore set-default
+  summary: Set the workspace default datastore by name.
+- uid: ext_azure-cli-ml_az_ml_datastore_show
+  name: az ml datastore show
+  summary: Show a single datastore by name.
+- uid: ext_azure-cli-ml_az_ml_datastore_show_default
+  name: az ml datastore show-default
+  summary: Show the workspace default datastore.
+- uid: ext_azure-cli-ml_az_ml_datastore_upload
+  name: az ml datastore upload
+  summary: Upload files to a Datastore.
+globalParameters:
+- name: --debug
+  summary: Increase logging verbosity to show all debug logs.
+- name: --help -h
+  summary: Show this help message and exit.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Output format.
+- name: --query
+  summary: JMESPath query string. See <a href="http://jmespath.org/">http://jmespath.org/</a> for more information and examples.
+- name: --verbose
+  summary: Increase logging verbosity. Use --debug for full debug logs.
+description: Commands for managing and using datastores with the Azure ML Workspace.

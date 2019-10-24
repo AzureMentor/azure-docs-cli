@@ -22,19 +22,19 @@ items:
   - azurecli
   parameters:
   - isRequired: true
-    name: --extension-id
-    summary: Extension ID.
+    name: --extension-name
+    summary: Extension Name.
     description: ''
   - isRequired: true
-    name: --publisher-id
-    summary: Publisher ID.
+    name: --publisher-name
+    summary: Publisher Name.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
 - uid: ext_azure-devops_az_devops_extension_enable
   name: az devops extension enable
@@ -44,19 +44,19 @@ items:
   - azurecli
   parameters:
   - isRequired: true
-    name: --extension-id
-    summary: Extension ID.
+    name: --extension-name
+    summary: Extension Name.
     description: ''
   - isRequired: true
-    name: --publisher-id
-    summary: Publisher ID.
+    name: --publisher-name
+    summary: Publisher Name.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
 - uid: ext_azure-devops_az_devops_extension_install
   name: az devops extension install
@@ -66,19 +66,19 @@ items:
   - azurecli
   parameters:
   - isRequired: true
-    name: --extension-id
-    summary: Extension ID.
+    name: --extension-name
+    summary: Extension Name.
     description: ''
   - isRequired: true
-    name: --publisher-id
-    summary: Publisher ID.
+    name: --publisher-name
+    summary: Publisher Name.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
 - uid: ext_azure-devops_az_devops_extension_list
   name: az devops extension list
@@ -88,21 +88,19 @@ items:
   - azurecli
   parameters:
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --include-built-in
-    defaultValue: "true"
     parameterValueGroup: false, true
     summary: Include built in extensions.
     description: ''
   - name: --include-disabled
-    defaultValue: "true"
     parameterValueGroup: false, true
     summary: Include disabled extensions.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
 - uid: ext_azure-devops_az_devops_extension_search
   name: az devops extension search
@@ -123,19 +121,19 @@ items:
   - azurecli
   parameters:
   - isRequired: true
-    name: --extension-id
-    summary: Extension ID.
+    name: --extension-name
+    summary: Extension Name.
     description: ''
   - isRequired: true
-    name: --publisher-id
-    summary: Publisher ID.
+    name: --publisher-name
+    summary: Publisher Name.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
 - uid: ext_azure-devops_az_devops_extension_uninstall
   name: az devops extension uninstall
@@ -145,19 +143,19 @@ items:
   - azurecli
   parameters:
   - isRequired: true
-    name: --extension-id
-    summary: Extension ID.
+    name: --extension-name
+    summary: Extension Name.
     description: ''
   - isRequired: true
-    name: --publisher-id
-    summary: Publisher ID.
+    name: --publisher-name
+    summary: Publisher Name.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
   - name: --yes -y
     summary: Do not prompt for confirmation.

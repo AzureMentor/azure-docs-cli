@@ -4,7 +4,7 @@ description: How to install the Azure CLI with the apt package manager
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 03/19/2019
+ms.date: 10/14/2019
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
@@ -14,10 +14,10 @@ ms.devlang: azurecli
 # Install Azure CLI with apt
 
 If you are running a distribution that comes with `apt`, such as Ubuntu or Debian, there's an x86_64 package available
-for the Azure CLI. This package has been tested with:
+for the Azure CLI. This package has been tested with and is supported for:
 
-* Ubuntu trusty, xenial, artful, and bionic
-* Debian wheezy, jessie, and stretch
+* Ubuntu trusty, xenial, artful, bionic, and disco
+* Debian wheezy, jessie, stretch, and buster
 
 [!INCLUDE [current-version](includes/current-version.md)]
 
@@ -28,18 +28,39 @@ for the Azure CLI. This package has been tested with:
 
 ## Install
 
+We offer two ways to install the Azure CLI with distributions that support `apt`: As an all-in-one script that
+runs the install commands for you, and instructions that you can run as a step-by-step process on your own.
+
+### Install with one command
+
+We offer and maintain a script which runs all of the installation commands in one step. Run it by using `curl`
+and pipe directly to `bash`, or download the script to a file and inspect it before running.
+
+> [!IMPORTANT]
+> This script is only verified for Ubuntu 16.04+ and Debian 8+. It may not work on other distributions.
+> If you're using a derived distribution such as Linux Mint, follow the manual install instructions and perform
+> any necessary troubleshooting.
+
+```bash
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+```
+
+### Manual install instructions
+
+If you don't want to run a script as superuser or the all-in-one script fails, follow these steps to install the Azure CLI.
+
 1. Get packages needed for the install process:
 
     ```bash
     sudo apt-get update
-    sudo apt-get install curl apt-transport-https lsb-release gnupg
+    sudo apt-get install ca-certificates curl apt-transport-https lsb-release gnupg
     ```
 
 2. Download and install the Microsoft signing key:
 
     ```bash
-    curl -sL https://packages.microsoft.com/keys/microsoft.asc | \
-        gpg --dearmor | \
+    curl -sL https://packages.microsoft.com/keys/microsoft.asc | 
+        gpg --dearmor | 
         sudo tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null
     ```
 
@@ -47,7 +68,7 @@ for the Azure CLI. This package has been tested with:
 
     ```bash
     AZ_REPO=$(lsb_release -cs)
-    echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | \
+    echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | 
         sudo tee /etc/apt/sources.list.d/azure-cli.list
     ```
 
@@ -76,9 +97,37 @@ determine the package to install. If you know the code name of the Ubuntu or Deb
 
 ### No package for your distribution
 
-Sometimes it may be a while after a distribution is released before there's an Azure CLI package available for it. The Azure CLI designed to be resilient with regards to future versions of dependencies and rely on as few of them as possible. If there's no package available for your base distribution, try a package for an earlier distribution.
+Sometimes it may be a while after a distribution is released before there's an Azure CLI package available for it. The Azure CLI designed to be resilient with regards to future
+versions of dependencies and rely on as few of them as possible. If there's no package available for your base distribution, try a package for an earlier distribution.
 
-To do this, set the value of `AZ_REPO` manually when [adding the repository](#set-release). For Ubuntu distributions use the `bionic` repository, and for Debian distributions use `stretch`. Distributions released before Ubuntu Trusty and Debian Wheezy are not supported.
+To do this, set the value of `AZ_REPO` manually when [adding the repository](#set-release). For Ubuntu distributions use the `bionic` repository, and for Debian distributions
+use `stretch`. Distributions released before Ubuntu Trusty and Debian Wheezy are not supported.
+
+### Proxy blocks connection
+
+[!INCLUDE[configure-proxy](includes/configure-proxy.md)]
+
+You may also want to explicitly configure `apt` to use this proxy at all times. Make sure that the
+following lines appear in an `apt` configuration file in `/etc/apt/apt.conf.d/`. We recommend using
+either your existing global configuration file, an existing proxy configuration file, `40proxies`,
+or `99local`, but follow your system administration requirements.
+
+```apt.conf
+Acquire {
+    http::proxy "http://[username]:[password]@[proxy]:[port]";
+    https::proxy "https://[username]:[password]@[proxy]:[port]";
+}
+```
+
+If your proxy does not use basic auth, __remove__ the `[username]:[password]@` portion of the proxy URI. If you require more information for proxy configuration, see the official Ubuntu documentation:
+
+* [apt.conf manpage](http://manpages.ubuntu.com/manpages/bionic/en/man5/apt.conf.5.html)
+* [Ubuntu wiki - apt-get howto](https://help.ubuntu.com/community/AptGet/Howto#Setting_up_apt-get_to_use_a_http-proxy)
+
+In order to get the Microsoft signing key and get the package from our repository, your proxy needs to
+allow HTTPS connections to the following address:
+
+* `https://packages.microsoft.com`
 
 [!INCLUDE[troubleshoot-wsl.md](includes/troubleshoot-wsl.md)]
 
@@ -114,7 +163,7 @@ Use `apt-get upgrade` to update the CLI package.
    sudo rm /etc/apt/sources.list.d/azure-cli.list
    ```
 
-3. Remove the signing key:
+3. If you use no other packages from Microsoft, remove the signing key:
 
     ```bash
     sudo rm /etc/apt/trusted.gpg.d/microsoft.asc.gpg

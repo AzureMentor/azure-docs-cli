@@ -37,7 +37,7 @@ items:
     summary: 'Space-separated list of enabled protocols for NoEncryption. Allowed values: Download, Dash, HLS, SmoothStreaming.'
     description: ''
   - name: --cbcs-clear-tracks
-    summary: The JSON representing which tracks should not be encrypted. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on <a href="https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#trackselection">https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#trackselection</a>.
+    summary: The JSON representing which tracks should not be encrypted. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on <a href="https://docs.microsoft.com/rest/api/media/streamingpolicies/create#trackselection">https://docs.microsoft.com/rest/api/media/streamingpolicies/create#trackselection</a>.
     description: ''
   - name: --cbcs-default-key-label
     summary: Label to specify Default Content Key for an encryption scheme.
@@ -53,7 +53,7 @@ items:
     summary: The custom license acquisition URL template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.
     description: ''
   - name: --cbcs-key-to-track-mappings
-    summary: The JSON representing a list of StreamingPolicyContentKey. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on <a href="https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#streamingpolicycontentkey">https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#streamingpolicycontentkey</a>.
+    summary: The JSON representing a list of StreamingPolicyContentKey. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on <a href="https://docs.microsoft.com/rest/api/media/streamingpolicies/create#streamingpolicycontentkey">https://docs.microsoft.com/rest/api/media/streamingpolicies/create#streamingpolicycontentkey</a>.
     description: ''
   - name: --cbcs-play-ready-attributes
     summary: Custom attributes for PlayReady.
@@ -68,7 +68,7 @@ items:
     summary: The custom license acquisition URL template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.
     description: ''
   - name: --cenc-clear-tracks
-    summary: The JSON representing which tracks should not be encrypted. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on <a href="https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#trackselection">https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#trackselection</a>.
+    summary: The JSON representing which tracks should not be encrypted. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on <a href="https://docs.microsoft.com/rest/api/media/streamingpolicies/create#trackselection">https://docs.microsoft.com/rest/api/media/streamingpolicies/create#trackselection</a>.
     description: ''
   - name: --cenc-default-key-label
     summary: Label to specify Default Content Key for an encryption scheme.
@@ -85,7 +85,7 @@ items:
     summary: If specified, no Widevine cenc DRM will be configured. If --cenc-disable-widevine is set, --cenc-disable-play-ready cannot also be set.
     description: ''
   - name: --cenc-key-to-track-mappings
-    summary: The JSON representing a list of StreamingPolicyContentKey. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on <a href="https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#streamingpolicycontentkey">https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#streamingpolicycontentkey</a>.
+    summary: The JSON representing a list of StreamingPolicyContentKey. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on <a href="https://docs.microsoft.com/rest/api/media/streamingpolicies/create#streamingpolicycontentkey">https://docs.microsoft.com/rest/api/media/streamingpolicies/create#streamingpolicycontentkey</a>.
     description: ''
   - name: --cenc-play-ready-attributes
     summary: Custom attributes for PlayReady.
@@ -100,7 +100,7 @@ items:
     summary: The custom license acquisition URL template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.
     description: ''
   - name: --envelope-clear-tracks
-    summary: The JSON representing which tracks should not be encrypted. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on <a href="https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#trackselection">https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#trackselection</a>.
+    summary: The JSON representing which tracks should not be encrypted. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on <a href="https://docs.microsoft.com/rest/api/media/streamingpolicies/create#trackselection">https://docs.microsoft.com/rest/api/media/streamingpolicies/create#trackselection</a>.
     description: ''
   - name: --envelope-default-key-label
     summary: Label used to specify Content Key when creating a streaming locator.
@@ -109,7 +109,7 @@ items:
     summary: Policy used by Default Key.
     description: ''
   - name: --envelope-key-to-track-mappings
-    summary: The JSON representing a list of StreamingPolicyContentKey. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on <a href="https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#streamingpolicycontentkey">https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#streamingpolicycontentkey</a>.
+    summary: The JSON representing a list of StreamingPolicyContentKey. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on <a href="https://docs.microsoft.com/rest/api/media/streamingpolicies/create#streamingpolicycontentkey">https://docs.microsoft.com/rest/api/media/streamingpolicies/create#streamingpolicycontentkey</a>.
     description: ''
   - name: --envelope-protocols
     summary: 'Space-separated list of enabled protocols for Envelope Encryption. Allowed values: Download, Dash, HLS, SmoothStreaming.'
@@ -121,10 +121,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
+    path: src/azure-cli/azure/cli/command_modules/ams/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
+      path: src/azure-cli/azure/cli/command_modules/ams/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_ams_streaming_policy_delete
   name: az ams streaming-policy delete
@@ -149,10 +149,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
+    path: src/azure-cli/azure/cli/command_modules/ams/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
+      path: src/azure-cli/azure/cli/command_modules/ams/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_ams_streaming_policy_list
   name: az ams streaming-policy list
@@ -182,10 +182,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
+    path: src/azure-cli/azure/cli/command_modules/ams/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
+      path: src/azure-cli/azure/cli/command_modules/ams/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_ams_streaming_policy_show
   name: az ams streaming-policy show
@@ -210,10 +210,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
+    path: src/azure-cli/azure/cli/command_modules/ams/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
+      path: src/azure-cli/azure/cli/command_modules/ams/_help.py
       repo: https://github.com/Azure/azure-cli.git
 commands:
 - uid: az_ams_streaming_policy_create
@@ -242,9 +242,9 @@ globalParameters:
 - name: --verbose
   summary: Increase logging verbosity. Use --debug for full debug logs.
 doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-doc_source_url_path: src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
-original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
-gitcommit: https://github.com/Azure/azure-cli/blob/f67c8d8ee391c7ce899c756c4110a645d2971ad6/src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
-updated_at: 4/3/2019 10:13:35 PM
-ms.date: 04/03/2019
+doc_source_url_path: src/azure-cli/azure/cli/command_modules/ams/_help.py
+original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+gitcommit: https://github.com/Azure/azure-cli/blob/47d67e6e47a574a82b53c181084b29479aa92d51/src/azure-cli/azure/cli/command_modules/ams/_help.py
+updated_at: 10/8/2019 5:15:05 AM
+ms.date: 10/08/2019
 description: Manage streaming policies for an Azure Media Services account.

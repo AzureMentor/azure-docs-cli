@@ -22,6 +22,7 @@ items:
   - az_aks_remove_dev_spaces
   - az_aks_scale
   - az_aks_show
+  - az_aks_update
   - az_aks_update_credentials
   - az_aks_upgrade
   - az_aks_upgrade_connector
@@ -61,10 +62,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_aks_create
   name: az aks create
@@ -82,6 +83,24 @@ items:
   - summary: Create a Kubernetes cluster with a larger node pool.
     syntax:
       content: az aks create -g MyResourceGroup -n MyManagedCluster --node-count 7
+  - summary: Create a kubernetes cluster with k8s 1.13.9 but use vmas.
+    syntax:
+      content: az aks create -g MyResourceGroup -n MyManagedCluster --kubernetes-version 1.13.9 --vm-set-type AvailabilitySet
+  - summary: Create a kubernetes cluster with default kubernetes vesrion, default SKU load balancer(basic) and default vm set type(AvailabilitySet).
+    syntax:
+      content: az aks create -g MyResourceGroup -n MyManagedCluster
+  - summary: Create a kubernetes cluster with standard SKU load balancer and two AKS created IPs for the load balancer outbound connection usage.
+    syntax:
+      content: az aks create -g MyResourceGroup -n MyManagedCluster --load-balancer-managed-outbound-ip-count 2
+  - summary: Create a kubernetes cluster with standard SKU load balancer and use the provided public IPs for the load balancer outbound connection usage.
+    syntax:
+      content: az aks create -g MyResourceGroup -n MyManagedCluster --load-balancer-outbound-ips <ip-resource-id-1,ip-resource-id-2>
+  - summary: Create a kubernetes cluster with standard SKU load balancer and use the provided public IP prefixes for the load balancer outbound connection usage.
+    syntax:
+      content: az aks create -g MyResourceGroup -n MyManagedCluster --load-balancer-outbound-ip-prefixes <ip-prefix-resource-id-1,ip-prefix-resource-id-2>
+  - summary: Create a kubernetes cluster with basic SKU load balancer and AvailabilitySet vm set type.
+    syntax:
+      content: az aks create -g MyResourceGroup -n MyManagedCluster --load-balancer-sku basic --vm-set-type AvailabilitySet
   parameters:
   - isRequired: true
     name: --name -n
@@ -107,6 +126,9 @@ items:
     defaultValue: azureuser
     summary: User account to create on node VMs for SSH access.
     description: ''
+  - name: --attach-acr
+    summary: Grant the 'acrpull' role assignment to the ACR specified by name or resource ID.
+    description: ''
   - name: --client-secret
     summary: Secret associated with the service principal. This argument is required if `--service-principal` is specified.
     description: ''
@@ -126,9 +148,9 @@ items:
     summary: Enable the Kubernetes addons in a comma-separated list.
     description: >-
       These addons are available:
-                                              http_application_routing - configure ingress with automatic public DNS name creation.
-                                              monitoring - turn on Log Analytics monitoring. Uses the Log Analytics Default Workspace if it exists, else creates one. Specify "--workspace-resource-id" to use an existing workspace.
-                                              virtual-node - enable AKS Virtual Node (PREVIEW). Requires --subnet-name to provide the name of an existing subnet for the Virtual Node to use.
+          http_application_routing - configure ingress with automatic public DNS name creation.
+          monitoring - turn on Log Analytics monitoring. Uses the Log Analytics Default Workspace if it exists, else creates one. Specify "--workspace-resource-id" to use an existing workspace.
+          virtual-node - enable AKS Virtual Node (PREVIEW). Requires --subnet-name to provide the name of an existing subnet for the Virtual Node to use.
   - name: --enable-rbac -r
     summary: 'Enable Kubernetes Role-Based Access Control. Default: enabled.'
     description: ''
@@ -139,6 +161,18 @@ items:
     summary: Version of Kubernetes to use for creating the cluster, such as "1.11.8" or "1.12.6".
     description: ''
     valueFrom: '`az aks get-versions`'
+  - name: --load-balancer-managed-outbound-ip-count
+    summary: Load balancer managed outbound IP count.
+    description: Desired number of managed outbound IPs for load balancer outbound connection. Valid for Standard SKU load balancer cluster only.
+  - name: --load-balancer-outbound-ip-prefixes
+    summary: Load balancer outbound IP prefix resource IDs.
+    description: Comma-separated public IP prefix resource IDs for load balancer outbound connection. Valid for Standard SKU load balancer cluster only.
+  - name: --load-balancer-outbound-ips
+    summary: Load balancer outbound IP resource IDs.
+    description: Comma-separated public IP resource IDs for load balancer outbound connection. Valid for Standard SKU load balancer cluster only.
+  - name: --load-balancer-sku
+    summary: Azure Load Balancer SKU selection for your cluster. basic or standard.
+    description: Select between Basic or Standard Azure Load Balancer SKU for your AKS cluster.
   - name: --location -l
     summary: 'Location. Values from: `az account list-locations`. You can configure the default location using `az configure --defaults location=&lt;location&gt;`.'
     description: ''
@@ -149,11 +183,13 @@ items:
     summary: The Kubernetes network plugin to use.
     description: Specify "azure" for advanced networking configurations. Defaults to "kubenet".
   - name: --network-policy
-    summary: (PREVIEW) The Kubernetes network policy to use.
+    summary: The Kubernetes network policy to use.
     description: >-
       Using together with "azure" network plugin.
-                                          Specify "azure" for Azure network policy manager and "calico" for calico network policy controller.
-                                          Defaults to "" (network policy disabled).
+
+      Specify "azure" for Azure network policy manager and "calico" for calico network policy controller.
+
+      Defaults to "" (network policy disabled).
   - name: --no-ssh-key -x
     summary: Do not use or create a local SSH key.
     description: To access nodes after creating a cluster with this option, use the Azure Portal.
@@ -194,6 +230,9 @@ items:
   - name: --tags
     summary: Space-separated tags in 'key[=value]' format. Use "" to clear existing tags.
     description: ''
+  - name: --vm-set-type
+    summary: Agent pool vm set type. VirtualMachineScaleSets or AvailabilitySet.
+    description: ''
   - name: --vnet-subnet-id
     summary: The ID of a subnet in an existing VNet into which to deploy the cluster.
     description: ''
@@ -204,10 +243,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_aks_delete
   name: az aks delete
@@ -238,10 +277,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_aks_disable_addons
   name: az aks disable-addons
@@ -273,19 +312,19 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_aks_enable_addons
   name: az aks enable-addons
   summary: Enable Kubernetes addons.
   description: >-
     These addons are available:
-                                    http_application_routing - configure ingress with automatic public DNS name creation.
-                                    monitoring - turn on Log Analytics monitoring. Requires "--workspace-resource-id".
-                                    virtual-node - enable AKS Virtual Node (PREVIEW). Requires --subnet-name to provide the name of an existing subnet for the Virtual Node to use.
+        http_application_routing - configure ingress with automatic public DNS name creation.
+        monitoring - turn on Log Analytics monitoring. Requires "--workspace-resource-id".
+        virtual-node - enable AKS Virtual Node (PREVIEW). Requires --subnet-name to provide the name of an existing subnet for the Virtual Node to use.
   langs:
   - azurecli
   examples:
@@ -309,7 +348,7 @@ items:
     summary: Do not wait for the long-running operation to finish.
     description: ''
   - name: --subnet-name -s
-    summary: ''
+    summary: Name of an existing subnet to use with the virtual-node add-on.
     description: ''
   - name: --workspace-resource-id
     summary: The resource ID of an existing Log Analytics Workspace to use for storing monitoring data.
@@ -318,10 +357,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_aks_get_credentials
   name: az aks get-credentials
@@ -345,6 +384,9 @@ items:
   - name: --admin -a
     summary: 'Get cluster administrator credentials.  Default: cluster user credentials.'
     description: ''
+  - name: --context
+    summary: If specified, overwrite the default context name.
+    description: ''
   - name: --file -f
     defaultValue: ~/.kube/config
     summary: Kubernetes configuration file to update. Use "-" to print YAML to stdout instead.
@@ -356,10 +398,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_aks_get_upgrades
   name: az aks get-upgrades
@@ -384,10 +426,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_aks_get_versions
   name: az aks get-versions
@@ -408,10 +450,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_aks_install_cli
   name: az aks install-cli
@@ -422,24 +464,24 @@ items:
   parameters:
   - name: --client-version
     defaultValue: latest
-    summary: ''
+    summary: Version of the client to install.
     description: ''
   - name: --install-location
     defaultValue: ~/.azure-kubectl/kubectl.exe
-    summary: ''
+    summary: Path at which to install DC/OS.
     description: ''
   - name: --subscription
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_aks_install_connector
   name: az aks install-connector
-  summary: (PREVIEW) Install the ACI Connector on a managed Kubernetes cluster.
+  summary: Install the ACI Connector on a managed Kubernetes cluster.
   description: ''
   langs:
   - azurecli
@@ -451,23 +493,23 @@ items:
     syntax:
       content: >-
         az aks install-connector --name MyManagedCluster --resource-group MyResourceGroup \
-                                   --connector-name aci-connector --os-type Windows
+           --connector-name aci-connector --os-type Windows
   - summary: Install the ACI Connector for both Windows and Linux to a managed Kubernetes cluster.
     syntax:
       content: >-
         az aks install-connector --name MyManagedCluster --resource-group MyResourceGroup \
-                                  --connector-name aci-connector --os-type Both
+          --connector-name aci-connector --os-type Both
   - summary: Install the ACI Connector using a specific service principal in a specific resource group.
     syntax:
       content: >-
         az aks install-connector --name MyManagedCluster --resource-group MyResourceGroup \
-                                  --connector-name aci-connector --service-principal {SPN_ID} --client-secret {SPN_SECRET} \
-                                  --aci-resource-group ACI-resource-group
+          --connector-name aci-connector --service-principal {SPN_ID} --client-secret {SPN_SECRET} \
+          --aci-resource-group ACI-resource-group
   - summary: Install the ACI Connector from a custom Helm chart with custom tag.
     syntax:
       content: >-
         az aks install-connector --name MyManagedCluster --resource-group MyResourceGroup \
-                                  --connector-name aci-connector --chart-url {CustomURL} --image-tag {VirtualKubeletImageTag}
+          --connector-name aci-connector --chart-url {CustomURL} --image-tag {VirtualKubeletImageTag}
   parameters:
   - isRequired: true
     name: --name -n
@@ -478,7 +520,7 @@ items:
     summary: Name of resource group. You can configure the default group using `az configure --defaults group=&lt;name&gt;`.
     description: ''
   - name: --aci-resource-group
-    summary: The resource group to create the ACI container groups. Use the MC_* resource group if it is not specified.
+    summary: The resource group to create the ACI container groups. Use the MC_\* resource group if it is not specified.
     description: ''
   - name: --chart-url
     defaultValue: <a href="https://github.com/virtual-kubelet/virtual-kubelet/raw/master/charts/virtual-kubelet-for-aks-latest.tgz">https://github.com/virtual-kubelet/virtual-kubelet/raw/master/charts/virtual-kubelet-for-aks-latest.tgz</a>
@@ -495,7 +537,7 @@ items:
     summary: The image tag of the virtual kubelet. Use 'latest' if it is not specified.
     description: ''
   - name: --location -l
-    summary: The location to create the ACI container groups. Use the location of the MC_* resource group if it is not specified.
+    summary: The location to create the ACI container groups. Use the location of the MC_\* resource group if it is not specified.
     description: ''
   - name: --os-type
     defaultValue: Linux
@@ -509,10 +551,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_aks_list
   name: az aks list
@@ -528,14 +570,14 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_aks_remove_connector
   name: az aks remove-connector
-  summary: (PREVIEW) Remove the ACI Connector from a managed Kubernetes cluster.
+  summary: Remove the ACI Connector from a managed Kubernetes cluster.
   description: ''
   langs:
   - azurecli
@@ -544,7 +586,10 @@ items:
     syntax:
       content: >-
         az aks remove-connector --name MyManagedCluster --resource-group MyResourceGroup \
-                                  --connector-name MyConnector --graceful
+          --connector-name MyConnector --graceful
+  - summary: Remove the ACI Connector from a managed Kubernetes cluster. (autogenerated)
+    syntax:
+      content: az aks remove-connector --connector-name MyConnector --name MyManagedCluster --os-type Windows --resource-group MyResourceGroup
   parameters:
   - isRequired: true
     name: --name -n
@@ -573,10 +618,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_aks_remove_dev_spaces
   name: az aks remove-dev-spaces
@@ -607,10 +652,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_aks_scale
   name: az aks scale
@@ -645,10 +690,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_aks_show
   name: az aks show
@@ -673,10 +718,65 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
+      repo: https://github.com/Azure/azure-cli.git
+- uid: az_aks_update
+  name: az aks update
+  summary: Update a managed Kubernetes cluster.
+  description: ''
+  langs:
+  - azurecli
+  examples:
+  - summary: Update a kubernetes cluster with standard SKU load balancer to use two AKS created IPs for the load balancer outbound connection usage.
+    syntax:
+      content: az aks update -g MyResourceGroup -n MyManagedCluster --load-balancer-managed-outbound-ip-count 2
+  - summary: Update a kubernetes cluster with standard SKU load balancer to use the provided public IPs for the load balancer outbound connection usage.
+    syntax:
+      content: az aks update -g MyResourceGroup -n MyManagedCluster --load-balancer-outbound-ips <ip-resource-id-1,ip-resource-id-2>
+  - summary: Update a kubernetes cluster with standard SKU load balancer to use the provided public IP prefixes for the load balancer outbound connection usage.
+    syntax:
+      content: az aks update -g MyResourceGroup -n MyManagedCluster --load-balancer-outbound-ip-prefixes <ip-prefix-resource-id-1,ip-prefix-resource-id-2>
+  - summary: Attach AKS cluster to ACR by name "acrName"
+    syntax:
+      content: az aks update -g MyResourceGroup -n MyManagedCluster --attach-acr acrName
+  parameters:
+  - isRequired: true
+    name: --name -n
+    summary: Name of the managed cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Name of resource group. You can configure the default group using `az configure --defaults group=&lt;name&gt;`.
+    description: ''
+  - name: --attach-acr
+    summary: Grant the 'acrpull' role assignment to the ACR specified by name or resource ID.
+    description: ''
+  - name: --detach-acr
+    summary: Disable the 'acrpull' role assignment to the ACR specified by name or resource ID.
+    description: ''
+  - name: --load-balancer-managed-outbound-ip-count
+    summary: Load balancer managed outbound IP count.
+    description: Desired number of managed outbound IPs for load balancer outbound connection. Valid for Standard SKU load balancer cluster only.
+  - name: --load-balancer-outbound-ip-prefixes
+    summary: Load balancer outbound IP prefix resource IDs.
+    description: Comma-separated public IP prefix resource IDs for load balancer outbound connection. Valid for Standard SKU load balancer cluster only.
+  - name: --load-balancer-outbound-ips
+    summary: Load balancer outbound IP resource IDs.
+    description: Comma-separated public IP resource IDs for load balancer outbound connection. Valid for Standard SKU load balancer cluster only.
+  - name: --no-wait
+    summary: Do not wait for the long-running operation to finish.
+    description: ''
+  - name: --subscription
+    summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
+    description: ''
+  source:
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
+    remote:
+      branch: dev
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_aks_update_credentials
   name: az aks update-credentials
@@ -687,7 +787,7 @@ items:
   examples:
   - summary: Update an existing Kubernetes cluster with new service principal.
     syntax:
-      content: az aks update-credentials -g MyResourceGroup -n MyManagedCluster --reset-service-principal --service-principal MyNewServicePrincipalID --service-principal MyNewServicePrincipalID --client-secret MyNewServicePrincipalSecret
+      content: az aks update-credentials -g MyResourceGroup -n MyManagedCluster --reset-service-principal --service-principal MyNewServicePrincipalID --client-secret MyNewServicePrincipalSecret
   - summary: Update an existing Azure Active Directory Kubernetes cluster with new server app secret key.
     syntax:
       content: az aks update-credentials -g MyResourceGroup -n MyManagedCluster --reset-aad --aad-server-app-id MyExistingAADServerAppID --aad-server-app-secret MyNewAADServerAppSecret --aad-client-app-id MyExistingAADClientAppID --aad-tenant-id MyAADTenantID
@@ -731,10 +831,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_aks_upgrade
   name: az aks upgrade
@@ -760,6 +860,9 @@ items:
     name: --resource-group -g
     summary: Name of resource group. You can configure the default group using `az configure --defaults group=&lt;name&gt;`.
     description: ''
+  - name: --control-plane-only
+    summary: Upgrade the cluster control plane only. If not specified, both control plane AND all node pools will be upgraded.
+    description: ''
   - name: --no-wait
     summary: Do not wait for the long-running operation to finish.
     description: ''
@@ -770,14 +873,14 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_aks_upgrade_connector
   name: az aks upgrade-connector
-  summary: (PREVIEW) Upgrade the ACI Connector on a managed Kubernetes cluster.
+  summary: Upgrade the ACI Connector on a managed Kubernetes cluster.
   description: ''
   langs:
   - azurecli
@@ -786,28 +889,28 @@ items:
     syntax:
       content: >-
         az aks upgrade-connector --name MyManagedCluster --resource-group MyResourceGroup \
-                                  --connector-name aci-connector
+          --connector-name aci-connector
   - summary: Upgrade the ACI Connector for Windows to a managed Kubernetes cluster.
     syntax:
       content: >-
         az aks upgrade-connector --name MyManagedCluster --resource-group MyResourceGroup \
-                                   --connector-name aci-connector --os-type Windows
+           --connector-name aci-connector --os-type Windows
   - summary: Upgrade the ACI Connector for both Windows and Linux to a managed Kubernetes cluster.
     syntax:
       content: >-
         az aks upgrade-connector --name MyManagedCluster --resource-group MyResourceGroup \
-                                  --connector-name aci-connector --os-type Both
+          --connector-name aci-connector --os-type Both
   - summary: Upgrade the ACI Connector to use a specific service principal in a specific resource group.
     syntax:
       content: >-
         az aks upgrade-connector --name MyManagedCluster --resource-group MyResourceGroup \
-                                  --connector-name aci-connector --service-principal {SPN_ID} --client-secret {SPN_SECRET} \
-                                  --aci-resource-group ACI-resource-group
+          --connector-name aci-connector --service-principal {SPN_ID} --client-secret {SPN_SECRET} \
+          --aci-resource-group ACI-resource-group
   - summary: Upgrade the ACI Connector from a custom Helm chart with custom tag.
     syntax:
       content: >-
         az aks upgrade-connector --name MyManagedCluster --resource-group MyResourceGroup \
-                                  --connector-name aci-connector --chart-url {CustomURL} --image-tag {VirtualKubeletImageTag}
+          --connector-name aci-connector --chart-url {CustomURL} --image-tag {VirtualKubeletImageTag}
   parameters:
   - isRequired: true
     name: --name -n
@@ -818,7 +921,7 @@ items:
     summary: Name of resource group. You can configure the default group using `az configure --defaults group=&lt;name&gt;`.
     description: ''
   - name: --aci-resource-group
-    summary: The resource group to create the ACI container groups. Use the MC_* resource group if it is not specified.
+    summary: The resource group to create the ACI container groups. Use the MC_\* resource group if it is not specified.
     description: ''
   - name: --chart-url
     defaultValue: <a href="https://github.com/virtual-kubelet/virtual-kubelet/raw/master/charts/virtual-kubelet-for-aks-latest.tgz">https://github.com/virtual-kubelet/virtual-kubelet/raw/master/charts/virtual-kubelet-for-aks-latest.tgz</a>
@@ -835,7 +938,7 @@ items:
     summary: The image tag of the virtual kubelet. Use 'latest' if it is not specified.
     description: ''
   - name: --location -l
-    summary: The location to create the ACI container groups. Use the location of the MC_* resource group if it is not specified.
+    summary: The location to create the ACI container groups. Use the location of the MC_\* resource group if it is not specified.
     description: ''
   - name: --os-type
     defaultValue: Linux
@@ -849,10 +952,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_aks_use_dev_spaces
   name: az aks use-dev-spaces
@@ -892,10 +995,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_aks_wait
   name: az aks wait
@@ -907,6 +1010,9 @@ items:
   - summary: Wait for a cluster to be upgraded, polling every minute for up to thirty minutes.
     syntax:
       content: az aks wait -g MyResourceGroup -n MyManagedCluster --updated --interval 60 --timeout 1800
+  - summary: Wait for a managed Kubernetes cluster to reach a desired state (autogenerated)
+    syntax:
+      content: az aks wait --created --interval 60 --name MyManagedCluster --resource-group MyResourceGroup --timeout 1800
   parameters:
   - isRequired: true
     name: --name -n
@@ -943,10 +1049,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 commands:
 - uid: az_aks_browse
@@ -978,13 +1084,13 @@ commands:
   summary: Download and install kubectl, the Kubernetes command-line tool.
 - uid: az_aks_install_connector
   name: az aks install-connector
-  summary: (PREVIEW) Install the ACI Connector on a managed Kubernetes cluster.
+  summary: Install the ACI Connector on a managed Kubernetes cluster.
 - uid: az_aks_list
   name: az aks list
   summary: List managed Kubernetes clusters.
 - uid: az_aks_remove_connector
   name: az aks remove-connector
-  summary: (PREVIEW) Remove the ACI Connector from a managed Kubernetes cluster.
+  summary: Remove the ACI Connector from a managed Kubernetes cluster.
 - uid: az_aks_remove_dev_spaces
   name: az aks remove-dev-spaces
   summary: Remove Azure Dev Spaces from a managed Kubernetes cluster.
@@ -994,6 +1100,9 @@ commands:
 - uid: az_aks_show
   name: az aks show
   summary: Show the details for a managed Kubernetes cluster.
+- uid: az_aks_update
+  name: az aks update
+  summary: Update a managed Kubernetes cluster.
 - uid: az_aks_update_credentials
   name: az aks update-credentials
   summary: Update credentials for a managed Kubernetes cluster, like service principal.
@@ -1002,7 +1111,7 @@ commands:
   summary: Upgrade a managed Kubernetes cluster to a newer version.
 - uid: az_aks_upgrade_connector
   name: az aks upgrade-connector
-  summary: (PREVIEW) Upgrade the ACI Connector on a managed Kubernetes cluster.
+  summary: Upgrade the ACI Connector on a managed Kubernetes cluster.
 - uid: az_aks_use_dev_spaces
   name: az aks use-dev-spaces
   summary: Use Azure Dev Spaces with a managed Kubernetes cluster.
@@ -1023,9 +1132,9 @@ globalParameters:
 - name: --verbose
   summary: Increase logging verbosity. Use --debug for full debug logs.
 doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-doc_source_url_path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
-original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
-gitcommit: https://github.com/Azure/azure-cli/blob/699cd3ada333c9abe8efaf2bf16b9ddc6d441afa/src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
-updated_at: 4/12/2019 2:54:45 PM
-ms.date: 04/12/2019
+doc_source_url_path: src/azure-cli/azure/cli/command_modules/acs/_help.py
+original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+gitcommit: https://github.com/Azure/azure-cli/blob/7764aad5a6586ff9f847e0c21c97915fec2411aa/src/azure-cli/azure/cli/command_modules/acs/_help.py
+updated_at: 9/19/2019 1:57:41 AM
+ms.date: 09/19/2019
 description: Manage Azure Kubernetes Services.

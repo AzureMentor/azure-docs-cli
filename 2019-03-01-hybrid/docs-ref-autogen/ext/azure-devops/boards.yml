@@ -16,25 +16,109 @@ items:
   - azurecli
   parameters:
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --id
-    summary: The UUID of an existing query.  Required unless --path or --wiql are specified.
+    summary: The ID of an existing query.  Required unless --path or --wiql are specified.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
   - name: --path
     summary: The path of an existing query.  Ignored if --id is specified.
     description: ''
   - name: --project -p
-    summary: Name or ID of the project.
+    summary: Name or ID of the project. You can configure the default project using az devops configure -d project=NAME_OR_ID. Required if not configured as default or picked up via git config.
     description: ''
   - name: --wiql
     summary: The query in Work Item Query Language format.  Ignored if --id or --path is specified.
     description: ''
 commands:
+- uid: ext_azure-devops_az_boards_area
+  name: az boards area
+  summary: Manage area paths.
+- uid: ext_azure-devops_az_boards_area_project
+  name: az boards area project
+  summary: Manage areas for a project.
+- uid: ext_azure-devops_az_boards_area_project_create
+  name: az boards area project create
+  summary: Create area.
+- uid: ext_azure-devops_az_boards_area_project_delete
+  name: az boards area project delete
+  summary: Delete area.
+- uid: ext_azure-devops_az_boards_area_project_list
+  name: az boards area project list
+  summary: List areas for a project.
+- uid: ext_azure-devops_az_boards_area_project_show
+  name: az boards area project show
+  summary: Show area details for a project.
+- uid: ext_azure-devops_az_boards_area_project_update
+  name: az boards area project update
+  summary: Update area.
+- uid: ext_azure-devops_az_boards_area_team
+  name: az boards area team
+  summary: Manage areas for a team.
+- uid: ext_azure-devops_az_boards_area_team_add
+  name: az boards area team add
+  summary: Add area to a team.
+- uid: ext_azure-devops_az_boards_area_team_list
+  name: az boards area team list
+  summary: List areas for a team.
+- uid: ext_azure-devops_az_boards_area_team_remove
+  name: az boards area team remove
+  summary: Remove area from a team.
+- uid: ext_azure-devops_az_boards_area_team_update
+  name: az boards area team update
+  summary: Update team area.
+- uid: ext_azure-devops_az_boards_iteration
+  name: az boards iteration
+  summary: Manage iterations.
+- uid: ext_azure-devops_az_boards_iteration_project
+  name: az boards iteration project
+  summary: Manage iterations for a project.
+- uid: ext_azure-devops_az_boards_iteration_project_create
+  name: az boards iteration project create
+  summary: Create iteration.
+- uid: ext_azure-devops_az_boards_iteration_project_delete
+  name: az boards iteration project delete
+  summary: Delete iteration.
+- uid: ext_azure-devops_az_boards_iteration_project_list
+  name: az boards iteration project list
+  summary: List iterations for a project.
+- uid: ext_azure-devops_az_boards_iteration_project_show
+  name: az boards iteration project show
+  summary: Show iteration details for a project.
+- uid: ext_azure-devops_az_boards_iteration_project_update
+  name: az boards iteration project update
+  summary: Update project iteration.
+- uid: ext_azure-devops_az_boards_iteration_team
+  name: az boards iteration team
+  summary: Manage iterations for a team.
+- uid: ext_azure-devops_az_boards_iteration_team_add
+  name: az boards iteration team add
+  summary: Add iteration to a team.
+- uid: ext_azure-devops_az_boards_iteration_team_list
+  name: az boards iteration team list
+  summary: List iterations for a team.
+- uid: ext_azure-devops_az_boards_iteration_team_list_work_items
+  name: az boards iteration team list-work-items
+  summary: List work-items for an iteration.
+- uid: ext_azure-devops_az_boards_iteration_team_remove
+  name: az boards iteration team remove
+  summary: Remove iteration from a team.
+- uid: ext_azure-devops_az_boards_iteration_team_set_backlog_iteration
+  name: az boards iteration team set-backlog-iteration
+  summary: Set backlog iteration for a team.
+- uid: ext_azure-devops_az_boards_iteration_team_set_default_iteration
+  name: az boards iteration team set-default-iteration
+  summary: Set default iteration for a team.
+- uid: ext_azure-devops_az_boards_iteration_team_show_backlog_iteration
+  name: az boards iteration team show-backlog-iteration
+  summary: Show backlog iteration for a team.
+- uid: ext_azure-devops_az_boards_iteration_team_show_default_iteration
+  name: az boards iteration team show-default-iteration
+  summary: Show default iteration for a team.
 - uid: ext_azure-devops_az_boards_query
   name: az boards query
   summary: Manage queries.
@@ -47,6 +131,21 @@ commands:
 - uid: ext_azure-devops_az_boards_work_item_delete
   name: az boards work-item delete
   summary: Delete a work item.
+- uid: ext_azure-devops_az_boards_work_item_relation
+  name: az boards work-item relation
+  summary: Manage work item relations.
+- uid: ext_azure-devops_az_boards_work_item_relation_add
+  name: az boards work-item relation add
+  summary: Add relation(s) to work item.
+- uid: ext_azure-devops_az_boards_work_item_relation_list_type
+  name: az boards work-item relation list-type
+  summary: List work item relations supported in the organization.
+- uid: ext_azure-devops_az_boards_work_item_relation_remove
+  name: az boards work-item relation remove
+  summary: Remove relation(s) from work item.
+- uid: ext_azure-devops_az_boards_work_item_relation_show
+  name: az boards work-item relation show
+  summary: Get work item, fill relations with friendly name.
 - uid: ext_azure-devops_az_boards_work_item_show
   name: az boards work-item show
   summary: Show details for a work item.

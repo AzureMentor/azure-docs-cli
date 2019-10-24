@@ -7,44 +7,15 @@ items:
   langs:
   - azurecli
   children:
-  - ext_azure-cli-iot-ext_az_iot_hub_apply_configuration
   - ext_azure-cli-iot-ext_az_iot_hub_generate_sas_token
   - ext_azure-cli-iot-ext_az_iot_hub_invoke_device_method
   - ext_azure-cli-iot-ext_az_iot_hub_invoke_module_method
   - ext_azure-cli-iot-ext_az_iot_hub_monitor_events
   - ext_azure-cli-iot-ext_az_iot_hub_monitor_feedback
   - ext_azure-cli-iot-ext_az_iot_hub_query
-- uid: ext_azure-cli-iot-ext_az_iot_hub_apply_configuration
-  name: az iot hub apply-configuration
-  summary: Apply a deployment manifest to a single device.
-  description: DEPRECATED. Use 'az iot edge set-modules' instead. Manifest content is json and must have root element of 'content' or 'moduleContent' e.g. {"content":{...}} or {"moduleContent":{...}}.
-  langs:
-  - azurecli
-  examples:
-  - summary: Test modules while in development.
-    syntax:
-      content: az iot hub apply-configuration --hub-name {iothub_name} --device-id {device_id} --content ../mycontent.json
-  parameters:
-  - isRequired: true
-    name: --content -k
-    summary: Configuration content. Provide file path or raw json.
-    description: ''
-  - isRequired: true
-    name: --device-id -d
-    summary: Target Device.
-    description: ''
-  - name: --hub-name -n
-    summary: IoT Hub name.
-    description: ''
-  - name: --login -l
-    summary: This command supports an entity connection string with rights to perform action. Use to avoid session login via "az login". If both an entity connection string and name are provided the connection string takes priority.
-    description: ''
-  - name: --resource-group -g
-    summary: Name of resource group. You can configure the default group using `az configure --defaults group=&lt;name&gt;`.
-    description: ''
 - uid: ext_azure-cli-iot-ext_az_iot_hub_generate_sas_token
   name: az iot hub generate-sas-token
-  summary: Generate a SAS token for a target IoT Hub or device.
+  summary: Generate a SAS token for a target IoT Hub, device or module.
   description: For device SAS tokens, the policy parameter is used to access the the device registry only. Therefore the policy should have read access to the registry. For IoT Hub tokens the policy is part of the SAS.
   langs:
   - azurecli
@@ -163,8 +134,10 @@ items:
   summary: Monitor device telemetry & messages sent to an IoT Hub.
   description: >-
     EXPERIMENTAL requires Python 3.5+
-                                This command relies on and may install dependent Cython package (uamqp) upon first execution.
-                                <a href="https://github.com/Azure/azure-uamqp-python">https://github.com/Azure/azure-uamqp-python</a>.
+
+    This command relies on and may install dependent Cython package (uamqp) upon first execution.
+
+    <a href="https://github.com/Azure/azure-uamqp-python">https://github.com/Azure/azure-uamqp-python</a>.
   langs:
   - azurecli
   examples:
@@ -245,8 +218,10 @@ items:
   summary: Monitor feedback sent by devices to acknowledge cloud-to-device (C2D) messages.
   description: >-
     EXPERIMENTAL requires Python 3.4+
-                                This command relies on and may install dependent Cython package (uamqp) upon first execution.
-                                <a href="https://github.com/Azure/azure-uamqp-python">https://github.com/Azure/azure-uamqp-python</a>.
+
+    This command relies on and may install dependent Cython package (uamqp) upon first execution.
+
+    <a href="https://github.com/Azure/azure-uamqp-python">https://github.com/Azure/azure-uamqp-python</a>.
   langs:
   - azurecli
   examples:
@@ -317,9 +292,6 @@ items:
     summary: Maximum number of elements to return. By default query has no cap.
     description: ''
 commands:
-- uid: ext_azure-cli-iot-ext_az_iot_hub_apply_configuration
-  name: az iot hub apply-configuration
-  summary: Apply a deployment manifest to a single device.
 - uid: ext_azure-cli-iot-ext_az_iot_hub_configuration
   name: az iot hub configuration
   summary: Manage IoT device configurations at scale.
@@ -395,9 +367,18 @@ commands:
 - uid: ext_azure-cli-iot-ext_az_iot_hub_device_twin_update
   name: az iot hub device-twin update
   summary: Update device twin definition.
+- uid: ext_azure-cli-iot-ext_az_iot_hub_distributed_tracing
+  name: az iot hub distributed-tracing
+  summary: Manage distributed settings per-device.
+- uid: ext_azure-cli-iot-ext_az_iot_hub_distributed_tracing_show
+  name: az iot hub distributed-tracing show
+  summary: Get the distributed tracing settings for a device.
+- uid: ext_azure-cli-iot-ext_az_iot_hub_distributed_tracing_update
+  name: az iot hub distributed-tracing update
+  summary: Update the distributed tracing options for a device.
 - uid: ext_azure-cli-iot-ext_az_iot_hub_generate_sas_token
   name: az iot hub generate-sas-token
-  summary: Generate a SAS token for a target IoT Hub or device.
+  summary: Generate a SAS token for a target IoT Hub, device or module.
 - uid: ext_azure-cli-iot-ext_az_iot_hub_invoke_device_method
   name: az iot hub invoke-device-method
   summary: Invoke a device method.

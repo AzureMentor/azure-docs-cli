@@ -36,8 +36,8 @@ items:
     summary: Description of the work item.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --discussion
     summary: Comment to add to a discussion in a work item.
@@ -52,10 +52,10 @@ items:
     summary: Open the work item in the default web browser.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
   - name: --project -p
-    summary: Name or ID of the project.
+    summary: Name or ID of the project. You can configure the default project using az devops configure -d project=NAME_OR_ID. Required if not configured as default or picked up via git config.
     description: ''
   - name: --reason
     summary: Reason for the state of the work item.
@@ -75,11 +75,14 @@ items:
     summary: Permanently delete this work item.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    description: ''
+  - name: --project -p
+    summary: Name or ID of the project. You can configure the default project using az devops configure -d project=NAME_OR_ID. Required if not configured as default or picked up via git config.
     description: ''
   - name: --yes -y
     summary: Do not prompt for confirmation.
@@ -96,14 +99,14 @@ items:
     summary: The ID of the work item.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --open
     summary: Open the work item in the default web browser.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
 - uid: ext_azure-devops_az_boards_work_item_update
   name: az boards work-item update
@@ -126,8 +129,8 @@ items:
     summary: Description of the work item.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --discussion
     summary: Comment to add to a discussion in a work item.
@@ -142,7 +145,7 @@ items:
     summary: Open the work item in the default web browser.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
   - name: --reason
     summary: Reason for the state of the work item.
@@ -160,6 +163,21 @@ commands:
 - uid: ext_azure-devops_az_boards_work_item_delete
   name: az boards work-item delete
   summary: Delete a work item.
+- uid: ext_azure-devops_az_boards_work_item_relation
+  name: az boards work-item relation
+  summary: Manage work item relations.
+- uid: ext_azure-devops_az_boards_work_item_relation_add
+  name: az boards work-item relation add
+  summary: Add relation(s) to work item.
+- uid: ext_azure-devops_az_boards_work_item_relation_list_type
+  name: az boards work-item relation list-type
+  summary: List work item relations supported in the organization.
+- uid: ext_azure-devops_az_boards_work_item_relation_remove
+  name: az boards work-item relation remove
+  summary: Remove relation(s) from work item.
+- uid: ext_azure-devops_az_boards_work_item_relation_show
+  name: az boards work-item relation show
+  summary: Get work item, fill relations with friendly name.
 - uid: ext_azure-devops_az_boards_work_item_show
   name: az boards work-item show
   summary: Show details for a work item.

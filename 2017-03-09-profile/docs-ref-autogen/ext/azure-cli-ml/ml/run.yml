@@ -1,0 +1,395 @@
+### YamlMime:UniversalReference
+items:
+- uid: ext_azure-cli-ml_az_ml_run
+  name: az ml run
+  summary: Commands for submitting, updating, and monitoring runs.
+  description: ''
+  langs:
+  - azurecli
+  children:
+  - ext_azure-cli-ml_az_ml_run_cancel
+  - ext_azure-cli-ml_az_ml_run_list
+  - ext_azure-cli-ml_az_ml_run_monitor_logs
+  - ext_azure-cli-ml_az_ml_run_monitor_tensorboard
+  - ext_azure-cli-ml_az_ml_run_show
+  - ext_azure-cli-ml_az_ml_run_submit_hyperdrive
+  - ext_azure-cli-ml_az_ml_run_submit_pipeline
+  - ext_azure-cli-ml_az_ml_run_submit_script
+  - ext_azure-cli-ml_az_ml_run_update
+- uid: ext_azure-cli-ml_az_ml_run_cancel
+  name: az ml run cancel
+  summary: Cancel run.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - isRequired: true
+    name: --run -r
+    summary: The runId of an experiment run.
+    description: ''
+  - name: --experiment-name -e
+    summary: Experiment name.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+- uid: ext_azure-cli-ml_az_ml_run_list
+  name: az ml run list
+  summary: List runs.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - name: --compute-target-name
+    summary: The compute target name.
+    description: ''
+  - name: --experiment-name -e
+    summary: Experiment name.
+    description: ''
+  - name: --last
+    defaultValue: "10"
+    summary: Fetch the latest N elements.
+    description: ''
+  - name: --minimal
+    summary: Flag to provide minimum properties for run output.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --parent-run-id
+    summary: Parent Run ID.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --pipeline-run-id
+    summary: Pipeline Run ID.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --status
+    parameterValueGroup: Completed, Failed, Finalizing, Preparing, Provisioning, Queued, Running, Starting
+    summary: Status of the run.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --tags
+    summary: Tags for a run with 'key[=value]' syntax.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+- uid: ext_azure-cli-ml_az_ml_run_monitor_logs
+  name: az ml run monitor-logs
+  summary: Monitor the logs for an existing run.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - isRequired: true
+    name: --run -r
+    summary: The runId of an experiment run.
+    description: ''
+  - name: --experiment-name -e
+    summary: Experiment name.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+- uid: ext_azure-cli-ml_az_ml_run_monitor_tensorboard
+  name: az ml run monitor-tensorboard
+  summary: Monitor an existing run using tensorboard.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - isRequired: true
+    name: --run -r
+    summary: The runId of an experiment run.
+    description: ''
+  - name: --experiment-name -e
+    summary: Experiment name.
+    description: ''
+  - name: --local-directory
+    summary: Local Directory to stage tensorboard files being monitored.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+- uid: ext_azure-cli-ml_az_ml_run_show
+  name: az ml run show
+  summary: Show run.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - isRequired: true
+    name: --run -r
+    summary: The runId of an experiment run.
+    description: ''
+  - name: --experiment-name -e
+    summary: Experiment name.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+- uid: ext_azure-cli-ml_az_ml_run_submit_hyperdrive
+  name: az ml run submit-hyperdrive
+  summary: Submit a hyper parameter sweep using run config.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - isRequired: true
+    name: --hyperdrive-configuration-name
+    summary: The full name of the hyperdrive configuration file. The file should be in a sub-folder of the directory specified by the path parameter.
+    description: ''
+  - name: --async
+    summary: Disable output streaming.
+    description: ''
+  - name: --conda-dependencies -d
+    summary: Override the default Conda dependencies file.
+    description: ''
+  - name: --ct --target
+    summary: The name of the compute target to use for the run.
+    description: ''
+  - name: --experiment-name -e
+    summary: Experiment name.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --run-configuration-name -c
+    summary: Name (without extension) of a run configuration file. The file should be in a sub-folder of the directory specified by the path parameter.
+    description: ''
+  - name: --source-directory
+    summary: A local directory containing source code files. Defaults to path if source directory is not provided.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+  - name: <USER_SCRIPT_AND_ARGUMENTS>
+    summary: The run submit arguments, like script name and script arguments.
+    description: ''
+- uid: ext_azure-cli-ml_az_ml_run_submit_pipeline
+  name: az ml run submit-pipeline
+  summary: Submit a pipeline for execution, from a published pipeline ID or pipeline YAML file.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - name: --datapaths -d
+    summary: Comma-separated list of name=datastore/path pairs for datapath parameter assignments.
+    description: ''
+  - name: --experiment-name -n
+    summary: Experiment name for run submission. If unspecified, use the pipeline name.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --parameters -p
+    summary: Comma-separated list of name=value pairs for pipeline parameter assignments.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --pipeline-id -i
+    summary: ID of a pipeline to submit (guid).
+    description: ''
+  - name: --pipeline-yaml -y
+    summary: YAML file which defines a pipeline.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+- uid: ext_azure-cli-ml_az_ml_run_submit_script
+  name: az ml run submit-script
+  summary: Submit a script for execution.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - name: --async
+    summary: Disable output streaming.
+    description: ''
+  - name: --conda-dependencies -d
+    summary: Override the default Conda dependencies file.
+    description: ''
+  - name: --ct --target
+    summary: The name of the compute target to use for the run.
+    description: ''
+  - name: --experiment-name -e
+    summary: Experiment name.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --run-configuration-name -c
+    summary: Name (without extension) of a run configuration file. The file should be in a sub-folder of the directory specified by the path parameter.
+    description: ''
+  - name: --source-directory
+    summary: A local directory containing source code files. Defaults to path if source directory is not provided.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+  - name: <USER_SCRIPT_AND_ARGUMENTS>
+    summary: The run submit arguments, like script name and script arguments.
+    description: ''
+- uid: ext_azure-cli-ml_az_ml_run_update
+  name: az ml run update
+  summary: Update the run by adding tags.
+  description: ''
+  langs:
+  - azurecli
+  parameters:
+  - isRequired: true
+    name: --run -r
+    summary: The runId of an experiment run.
+    description: ''
+  - name: --add-tag
+    summary: Tag the entitiy with 'key[=value]' syntax.
+    description: ''
+  - name: --experiment-name -e
+    summary: Experiment name.
+    description: ''
+  - name: --output-metadata-file -t
+    summary: Provide an optional output file location for structured object output.
+    description: ''
+  - name: --path
+    defaultValue: .
+    summary: Path to a root directory for run configuration files.
+    description: ''
+  - name: --resource-group -g
+    summary: Resource group name.
+    description: ''
+  - name: --subscription-id
+    summary: Specifies the subscription Id.
+    description: ''
+  - name: --workspace-name -w
+    summary: Workspace name.
+    description: ''
+commands:
+- uid: ext_azure-cli-ml_az_ml_run_cancel
+  name: az ml run cancel
+  summary: Cancel run.
+- uid: ext_azure-cli-ml_az_ml_run_list
+  name: az ml run list
+  summary: List runs.
+- uid: ext_azure-cli-ml_az_ml_run_monitor_logs
+  name: az ml run monitor-logs
+  summary: Monitor the logs for an existing run.
+- uid: ext_azure-cli-ml_az_ml_run_monitor_tensorboard
+  name: az ml run monitor-tensorboard
+  summary: Monitor an existing run using tensorboard.
+- uid: ext_azure-cli-ml_az_ml_run_show
+  name: az ml run show
+  summary: Show run.
+- uid: ext_azure-cli-ml_az_ml_run_submit_hyperdrive
+  name: az ml run submit-hyperdrive
+  summary: Submit a hyper parameter sweep using run config.
+- uid: ext_azure-cli-ml_az_ml_run_submit_pipeline
+  name: az ml run submit-pipeline
+  summary: Submit a pipeline for execution, from a published pipeline ID or pipeline YAML file.
+- uid: ext_azure-cli-ml_az_ml_run_submit_script
+  name: az ml run submit-script
+  summary: Submit a script for execution.
+- uid: ext_azure-cli-ml_az_ml_run_update
+  name: az ml run update
+  summary: Update the run by adding tags.
+globalParameters:
+- name: --debug
+  summary: Increase logging verbosity to show all debug logs.
+- name: --help -h
+  summary: Show this help message and exit.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Output format.
+- name: --query
+  summary: JMESPath query string. See <a href="http://jmespath.org/">http://jmespath.org/</a> for more information and examples.
+- name: --verbose
+  summary: Increase logging verbosity. Use --debug for full debug logs.
+description: Commands for submitting, updating, and monitoring runs.

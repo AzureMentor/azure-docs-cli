@@ -31,7 +31,12 @@ for the Azure CLI. This package has been tested with RHEL 7, Fedora 19 and highe
 2. Create local `azure-cli` repository information.
 
    ```bash
-   sudo sh -c 'echo -e "[azure-cli]\nname=Azure CLI\nbaseurl=https://packages.microsoft.com/yumrepos/azure-cli\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/azure-cli.repo'
+   sudo sh -c 'echo -e "[azure-cli]
+   name=Azure CLI
+   baseurl=https://packages.microsoft.com/yumrepos/azure-cli
+   enabled=1
+   gpgcheck=1
+   gpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/azure-cli.repo'
    ```
 
 3. Install with the `yum install` command.
@@ -40,7 +45,7 @@ for the Azure CLI. This package has been tested with RHEL 7, Fedora 19 and highe
    sudo yum install azure-cli
    ```
 
-You can then run the Azure CLI with the `az` command. To sign in, use [az login](/cli/azure/reference-index#az-login) command.
+Run the Azure CLI with the `az` command. To sign in, use [az login](/cli/azure/reference-index#az-login) command.
 
 [!INCLUDE [interactive-login](includes/interactive-login.md)]
 
@@ -49,6 +54,26 @@ To learn more about different authentication methods, see [Sign in with Azure CL
 ## Troubleshooting
 
 Here are some common problems seen when installing with `yum`. If you experience a problem not covered here, [file an issue on github](https://github.com/Azure/azure-cli/issues).
+
+### Proxy blocks connection
+
+[!INCLUDE[configure-proxy](includes/configure-proxy.md)]
+
+You may also want to explicitly configure `yum` to use this proxy at all times. Make sure that the following
+lines appear under the `[main]` section of `/etc/yum.conf`:
+
+```yum.conf
+[main]
+# ...
+proxy=http://[proxy]:[port] # If your proxy requires https, change http->https
+proxy_username=[username] # Only required for basic auth
+proxy_password=[password] # Only required for basic auth
+```
+
+In order to get the Microsoft signing key and get the package from our repository, your proxy needs to
+allow HTTPS connections to the following address:
+
+* `https://packages.microsoft.com`
 
 [!INCLUDE[troubleshoot-wsl.md](includes/troubleshoot-wsl.md)]
 
@@ -76,7 +101,7 @@ sudo yum update azure-cli
    sudo rm /etc/yum.repos.d/azure-cli.repo
    ```
 
-3. If you removed the repository information, also remove the Microsoft GPG signature key.
+3. If you don't use any other Microsoft packages, remove the signing key.
 
    ```bash
    MSFT_KEY=`rpm -qa gpg-pubkey /* --qf "%{version}-%{release} %{summary}\n" | grep Microsoft | awk '{print $1}'`

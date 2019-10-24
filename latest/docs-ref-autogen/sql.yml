@@ -24,10 +24,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-sql/azure/cli/command_modules/sql/_help.py
+    path: src/azure-cli/azure/cli/command_modules/sql/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-sql/azure/cli/command_modules/sql/_help.py
+      path: src/azure-cli/azure/cli/command_modules/sql/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_sql_show_usage
   name: az sql show-usage
@@ -48,10 +48,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-sql/azure/cli/command_modules/sql/_help.py
+    path: src/azure-cli/azure/cli/command_modules/sql/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-sql/azure/cli/command_modules/sql/_help.py
+      path: src/azure-cli/azure/cli/command_modules/sql/_help.py
       repo: https://github.com/Azure/azure-cli.git
 commands:
 - uid: az_sql_db
@@ -231,24 +231,81 @@ commands:
 - uid: az_sql_failover_group_update
   name: az sql failover-group update
   summary: Updates the failover group.
+- uid: az_sql_instance_failover_group
+  name: az sql instance-failover-group
+  summary: Manage SQL Instance Failover Groups.
+- uid: az_sql_instance_failover_group_create
+  name: az sql instance-failover-group create
+  summary: Creates an instance failover group between two connected managed instances.
+- uid: az_sql_instance_failover_group_delete
+  name: az sql instance-failover-group delete
+  summary: Deletes a failover group.
+- uid: az_sql_instance_failover_group_set_primary
+  name: az sql instance-failover-group set-primary
+  summary: Set the primary of the instance failover group by failing over all databases from the current primary managed instance.
+- uid: az_sql_instance_failover_group_show
+  name: az sql instance-failover-group show
+  summary: Gets a failover group.
+- uid: az_sql_instance_failover_group_update
+  name: az sql instance-failover-group update
+  summary: Updates the instance failover group.
 - uid: az_sql_list_usages
   name: az sql list-usages
   summary: Gets all subscription usage metrics in a given location.
 - uid: az_sql_mi
   name: az sql mi
   summary: Manage SQL managed instances.
+- uid: az_sql_mi_ad_admin
+  name: az sql mi ad-admin
+  summary: Manage a managed instance's Active Directory administrator.
+- uid: az_sql_mi_ad_admin_create
+  name: az sql mi ad-admin create
+  summary: Creates a new managed instance Active Directory administrator.
+- uid: az_sql_mi_ad_admin_delete
+  name: az sql mi ad-admin delete
+  summary: Deletes an existing managed instance Active Directory Administrator.
+- uid: az_sql_mi_ad_admin_list
+  name: az sql mi ad-admin list
+  summary: Returns a list of managed instance Active Directory Administrators.
+- uid: az_sql_mi_ad_admin_update
+  name: az sql mi ad-admin update
+  summary: Updates an existing managed instance Active Directory administrator.
 - uid: az_sql_mi_create
   name: az sql mi create
   summary: Create a managed instance.
 - uid: az_sql_mi_delete
   name: az sql mi delete
   summary: Delete a managed instance.
+- uid: az_sql_mi_key
+  name: az sql mi key
+  summary: Manage a SQL Instance's keys.
+- uid: az_sql_mi_key_create
+  name: az sql mi key create
+  summary: Creates a SQL Instance key.
+- uid: az_sql_mi_key_delete
+  name: az sql mi key delete
+  summary: Deletes a SQL Instance key.
+- uid: az_sql_mi_key_list
+  name: az sql mi key list
+  summary: Gets a list of managed instance keys.
+- uid: az_sql_mi_key_show
+  name: az sql mi key show
+  summary: Shows a SQL Instance key.
 - uid: az_sql_mi_list
   name: az sql mi list
   summary: List available managed instances.
 - uid: az_sql_mi_show
   name: az sql mi show
   summary: Get the details for a managed instance.
+- uid: az_sql_mi_tde_key
+  name: az sql mi tde-key
+  summary: Manage a SQL Instance's encryption protector.
+- uid: az_sql_mi_tde_key_set
+  name: az sql mi tde-key set
+  summary: Sets the SQL Instance's encryption protector.
+- uid: az_sql_mi_tde_key_show
+  name: az sql mi tde-key show
+  summary: Gets a managed instance encryption protector.
 - uid: az_sql_mi_update
   name: az sql mi update
   summary: Update a managed instance.
@@ -399,6 +456,18 @@ commands:
 - uid: az_sql_show_usage
   name: az sql show-usage
   summary: Gets a subscription usage metric.
+- uid: az_sql_virtual_cluster
+  name: az sql virtual-cluster
+  summary: Manage SQL virtual clusters.
+- uid: az_sql_virtual_cluster_delete
+  name: az sql virtual-cluster delete
+  summary: Delete a virtual cluster.
+- uid: az_sql_virtual_cluster_list
+  name: az sql virtual-cluster list
+  summary: List available virtual clusters.
+- uid: az_sql_virtual_cluster_show
+  name: az sql virtual-cluster show
+  summary: Get the details for a virtual cluster.
 - uid: az_sql_vm
   name: az sql vm
   summary: Manage SQL virtual machines.
@@ -473,9 +542,9 @@ globalParameters:
 - name: --verbose
   summary: Increase logging verbosity. Use --debug for full debug logs.
 doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-doc_source_url_path: src/command_modules/azure-cli-sql/azure/cli/command_modules/sql/_help.py
-original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/command_modules/azure-cli-sql/azure/cli/command_modules/sql/_help.py
-gitcommit: https://github.com/Azure/azure-cli/blob/90bf51bb410ba4196edcf85091be0f8eb776709c/src/command_modules/azure-cli-sql/azure/cli/command_modules/sql/_help.py
-updated_at: 4/16/2019 3:04:10 PM
-ms.date: 04/16/2019
+doc_source_url_path: src/azure-cli/azure/cli/command_modules/sql/_help.py
+original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+gitcommit: https://github.com/Azure/azure-cli/blob/0970d1ca58bf3e7bcac782e518e17aaa78c7688c/src/azure-cli/azure/cli/command_modules/sql/_help.py
+updated_at: 10/11/2019 2:30:25 AM
+ms.date: 10/11/2019
 description: Manage Azure SQL Databases and Data Warehouses.

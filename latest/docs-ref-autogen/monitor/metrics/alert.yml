@@ -26,20 +26,31 @@ items:
     syntax:
       content: >-
         az monitor metrics alert create -n alert1 -g {ResourceGroup} --scopes {VirtualMachineID} \
-                                    --condition "avg Percentage CPU > 90" --window-size 5m --evaluation-frequency 1m \
-                                    --action {actionGroupId} apiKey={APIKey} type=HighCPU --description "High CPU"
+            --condition "avg Percentage CPU > 90" --window-size 5m --evaluation-frequency 1m \
+            --action {actionGroupId} apiKey={APIKey} type=HighCPU --description "High CPU"
   - summary: Create an alert when a storage account shows a high number of slow transactions, using multi-dimensional filters.
     syntax:
       content: >-
         az monitor metrics alert create -g {ResourceGroup} -n alert1 --scopes {StorageAccountId} \
-                                    --description "Storage Slow Transactions" \
-                                    --condition "total transactions > 5 where ResponseType includes Success" \
-                                    --condition "avg SuccessE2ELatency > 250 where ApiName includes GetBlob or PutBlob"
+            --description "Storage Slow Transactions" \
+            --condition "total transactions > 5 where ResponseType includes Success" \
+            --condition "avg SuccessE2ELatency > 250 where ApiName includes GetBlob or PutBlob"
   parameters:
   - isRequired: true
     name: --condition
     summary: The condition which triggers the rule.
-    description: "Usage:  --conditon {avg,min,max,total,count} [NAMESPACE.]METRIC {=,!=,&gt;,&gt;=,&lt;,&lt;=} THRESHOLD\n                                                       [where DIMENSION {includes,excludes} VALUE [or VALUE ...]\n                                                       [and   DIMENSION {includes,excludes} VALUE [or VALUE ...] ...]]\n                                    \n                                    Dimensions can be queried by adding the 'where' keyword and multiple dimensions can be queried by combining them with the 'and' keyword.\n                                    \n                                    Values for METRIC, DIMENSION and appropriate THRESHOLD values can be obtained from `az monitor metrics list-definition` command.\n                                    \n                                    Multiple conditons can be specified by using more than one `--condition` argument."
+    description: >-
+      Usage:  --conditon {avg,min,max,total,count} [NAMESPACE.]METRIC {=,!=,&gt;,&gt;=,&lt;,&lt;=} THRESHOLD
+                         [where DIMENSION {includes,excludes} VALUE [or VALUE ...]
+                         [and   DIMENSION {includes,excludes} VALUE [or VALUE ...] ...]]
+
+      Dimensions can be queried by adding the 'where' keyword and multiple dimensions can be queried by combining them with the 'and' keyword.
+
+
+      Values for METRIC, DIMENSION and appropriate THRESHOLD values can be obtained from `az monitor metrics list-definitions` command.
+
+
+      Multiple conditons can be specified by using more than one `--condition` argument.
   - isRequired: true
     name: --description
     summary: Free-text description of the rule.
@@ -58,7 +69,11 @@ items:
     description: ''
   - name: --action -a
     summary: Add an action group and optional webhook properties to fire when the alert is triggered.
-    description: "Usage:   --action ACTION_GROUP_NAME_OR_ID [KEY=VAL [KEY=VAL ...]]\n                                    \n                                    Multiple action groups can be specified by using more than one `--action` argument."
+    description: >-
+      Usage:   --action ACTION_GROUP_NAME_OR_ID [KEY=VAL [KEY=VAL ...]]
+
+
+      Multiple action groups can be specified by using more than one `--action` argument.
   - name: --auto-mitigate
     parameterValueGroup: false, true
     summary: Automatically resolve the alert.
@@ -86,10 +101,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-monitor/azure/cli/command_modules/monitor/_help.py
+    path: src/azure-cli/azure/cli/command_modules/monitor/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-monitor/azure/cli/command_modules/monitor/_help.py
+      path: src/azure-cli/azure/cli/command_modules/monitor/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_monitor_metrics_alert_delete
   name: az monitor metrics alert delete
@@ -115,10 +130,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-monitor/azure/cli/command_modules/monitor/_help.py
+    path: src/azure-cli/azure/cli/command_modules/monitor/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-monitor/azure/cli/command_modules/monitor/_help.py
+      path: src/azure-cli/azure/cli/command_modules/monitor/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_monitor_metrics_alert_list
   name: az monitor metrics alert list
@@ -138,10 +153,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-monitor/azure/cli/command_modules/monitor/_help.py
+    path: src/azure-cli/azure/cli/command_modules/monitor/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-monitor/azure/cli/command_modules/monitor/_help.py
+      path: src/azure-cli/azure/cli/command_modules/monitor/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_monitor_metrics_alert_show
   name: az monitor metrics alert show
@@ -167,10 +182,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-monitor/azure/cli/command_modules/monitor/_help.py
+    path: src/azure-cli/azure/cli/command_modules/monitor/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-monitor/azure/cli/command_modules/monitor/_help.py
+      path: src/azure-cli/azure/cli/command_modules/monitor/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_monitor_metrics_alert_update
   name: az monitor metrics alert update
@@ -223,13 +238,28 @@ items:
     description: ''
   - name: --add-action
     summary: Add an action group and optional webhook properties to fire when the alert is triggered.
-    description: "Usage:   --add-action ACTION_GROUP_NAME_OR_ID [KEY=VAL [KEY=VAL ...]]\n                                    \n                                    Multiple action groups can be specified by using more than one `--action` argument."
+    description: >-
+      Usage:   --add-action ACTION_GROUP_NAME_OR_ID [KEY=VAL [KEY=VAL ...]]
+
+
+      Multiple action groups can be specified by using more than one `--action` argument.
   - name: --remove-actions
     summary: Space-separated list of action group names to remove.
     description: ''
   - name: --add-condition
     summary: Add a condition which triggers the rule.
-    description: "Usage:  --add-conditon {avg,min,max,total,count} [NAMESPACE.]METRIC {=,!=,&gt;,&gt;=,&lt;,&lt;=} THRESHOLD\n                                                           [where DIMENSION {includes,excludes} VALUE [or VALUE ...]\n                                                           [and   DIMENSION {includes,excludes} VALUE [or VALUE ...] ...]]\n                                    \n                                    Dimensions can be queried by adding the 'where' keyword and multiple dimensions can be queried by combining them with the 'and' keyword.\n                                    \n                                    Values for METRIC, DIMENSION and appropriate THRESHOLD values can be obtained from `az monitor metrics list-definition` command.\n                                    \n                                    Multiple conditons can be specified by using more than one `--condition` argument."
+    description: >-
+      Usage:  --add-conditon {avg,min,max,total,count} [NAMESPACE.]METRIC {=,!=,&gt;,&gt;=,&lt;,&lt;=} THRESHOLD
+                             [where DIMENSION {includes,excludes} VALUE [or VALUE ...]
+                             [and   DIMENSION {includes,excludes} VALUE [or VALUE ...] ...]]
+
+      Dimensions can be queried by adding the 'where' keyword and multiple dimensions can be queried by combining them with the 'and' keyword.
+
+
+      Values for METRIC, DIMENSION and appropriate THRESHOLD values can be obtained from `az monitor metrics list-definitions` command.
+
+
+      Multiple conditons can be specified by using more than one `--condition` argument.
   - name: --remove-conditions
     summary: Space-separated list of condition names to remove.
     description: ''
@@ -246,10 +276,10 @@ items:
     summary: 'Update an object by specifying a property path and value to set.  Example: --set property1.property2=<value>.'
     description: ''
   source:
-    path: src/command_modules/azure-cli-monitor/azure/cli/command_modules/monitor/_help.py
+    path: src/azure-cli/azure/cli/command_modules/monitor/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-monitor/azure/cli/command_modules/monitor/_help.py
+      path: src/azure-cli/azure/cli/command_modules/monitor/_help.py
       repo: https://github.com/Azure/azure-cli.git
 commands:
 - uid: az_monitor_metrics_alert_create
@@ -281,9 +311,9 @@ globalParameters:
 - name: --verbose
   summary: Increase logging verbosity. Use --debug for full debug logs.
 doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-doc_source_url_path: src/command_modules/azure-cli-monitor/azure/cli/command_modules/monitor/_help.py
-original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/command_modules/azure-cli-monitor/azure/cli/command_modules/monitor/_help.py
-gitcommit: https://github.com/Azure/azure-cli/blob/ada2a74c57346a9e587b595c653ce91f0f67712a/src/command_modules/azure-cli-monitor/azure/cli/command_modules/monitor/_help.py
-updated_at: 4/11/2019 3:09:45 AM
-ms.date: 04/11/2019
+doc_source_url_path: src/azure-cli/azure/cli/command_modules/monitor/_help.py
+original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+gitcommit: https://github.com/Azure/azure-cli/blob/b084bbbc0b442721d9a9b35960bc4cc0844ddd3b/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+updated_at: 10/11/2019 4:24:30 AM
+ms.date: 10/11/2019
 description: Manage near-realtime metric alert rules.

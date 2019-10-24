@@ -42,7 +42,7 @@ items:
     summary: The first quality (lowest) bitrate to include in the manifest.
     description: ''
   - name: --tracks
-    summary: The JSON representing the track selections. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on <a href="https://docs.microsoft.com/en-us/rest/api/media/accountfilters/createorupdate#filtertrackselection">https://docs.microsoft.com/en-us/rest/api/media/accountfilters/createorupdate#filtertrackselection</a>.
+    summary: The JSON representing the track selections. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on <a href="https://docs.microsoft.com/rest/api/media/accountfilters/createorupdate#filtertrackselection">https://docs.microsoft.com/rest/api/media/accountfilters/createorupdate#filtertrackselection</a>.
     description: ''
   - name: --end-timestamp
     summary: Applies to Video on Demand (VoD). For the Live Streaming presentation, it is silently ignored and applied when the presentation ends and the stream becomes VoD. This is a long value that represents an absolute end point of the presentation, rounded to the closest next GOP start. The unit is the timescale, so an endTimestamp of 1800000000 would be for 3 minutes. Use startTimestamp and endTimestamp to trim the fragments that will be in the playlist (manifest). For example, startTimestamp=40000000 and endTimestamp=100000000 using the default timescale will generate a playlist that contains fragments from between 4 seconds and 10 seconds of the VoD presentation. If a fragment straddles the boundary, the entire fragment will be included in the manifest.
@@ -67,10 +67,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
+    path: src/azure-cli/azure/cli/command_modules/ams/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
+      path: src/azure-cli/azure/cli/command_modules/ams/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_ams_account_filter_delete
   name: az ams account-filter delete
@@ -95,10 +95,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
+    path: src/azure-cli/azure/cli/command_modules/ams/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
+      path: src/azure-cli/azure/cli/command_modules/ams/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_ams_account_filter_list
   name: az ams account-filter list
@@ -119,10 +119,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
+    path: src/azure-cli/azure/cli/command_modules/ams/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
+      path: src/azure-cli/azure/cli/command_modules/ams/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_ams_account_filter_show
   name: az ams account-filter show
@@ -147,10 +147,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
+    path: src/azure-cli/azure/cli/command_modules/ams/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
+      path: src/azure-cli/azure/cli/command_modules/ams/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_ams_account_filter_update
   name: az ams account-filter update
@@ -166,7 +166,7 @@ items:
     summary: The first quality (lowest) bitrate to include in the manifest.
     description: ''
   - name: --tracks
-    summary: The JSON representing the track selections. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on <a href="https://docs.microsoft.com/en-us/rest/api/media/accountfilters/createorupdate#filtertrackselection">https://docs.microsoft.com/en-us/rest/api/media/accountfilters/createorupdate#filtertrackselection</a>.
+    summary: The JSON representing the track selections. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on <a href="https://docs.microsoft.com/rest/api/media/accountfilters/createorupdate#filtertrackselection">https://docs.microsoft.com/rest/api/media/accountfilters/createorupdate#filtertrackselection</a>.
     description: ''
   - name: --account-name -a
     summary: The name of the Azure Media Services account.
@@ -215,10 +215,10 @@ items:
     summary: 'Update an object by specifying a property path and value to set.  Example: --set property1.property2=<value>.'
     description: ''
   source:
-    path: src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
+    path: src/azure-cli/azure/cli/command_modules/ams/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
+      path: src/azure-cli/azure/cli/command_modules/ams/_help.py
       repo: https://github.com/Azure/azure-cli.git
 commands:
 - uid: az_ams_account_filter_create
@@ -250,9 +250,9 @@ globalParameters:
 - name: --verbose
   summary: Increase logging verbosity. Use --debug for full debug logs.
 doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-doc_source_url_path: src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
-original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
-gitcommit: https://github.com/Azure/azure-cli/blob/f67c8d8ee391c7ce899c756c4110a645d2971ad6/src/command_modules/azure-cli-ams/azure/cli/command_modules/ams/_help.py
-updated_at: 4/3/2019 10:13:35 PM
-ms.date: 04/03/2019
+doc_source_url_path: src/azure-cli/azure/cli/command_modules/ams/_help.py
+original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+gitcommit: https://github.com/Azure/azure-cli/blob/47d67e6e47a574a82b53c181084b29479aa92d51/src/azure-cli/azure/cli/command_modules/ams/_help.py
+updated_at: 10/8/2019 5:15:05 AM
+ms.date: 10/08/2019
 description: Manage account filters for an Azure Media Services account.

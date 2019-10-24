@@ -24,17 +24,17 @@ items:
     summary: Name for the new repository.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --open
     summary: Open the repository page in your web browser.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
   - name: --project -p
-    summary: Name or ID of the project.
+    summary: Name or ID of the project. You can configure the default project using az devops configure -d project=NAME_OR_ID. Required if not configured as default or picked up via git config.
     description: ''
 - uid: ext_azure-devops_az_repos_delete
   name: az repos delete
@@ -48,14 +48,14 @@ items:
     summary: ID of the repository.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
   - name: --project -p
-    summary: Name or ID of the project.
+    summary: Name or ID of the project. You can configure the default project using az devops configure -d project=NAME_OR_ID. Required if not configured as default or picked up via git config.
     description: ''
   - name: --yes -y
     summary: Do not prompt for confirmation.
@@ -63,19 +63,19 @@ items:
 - uid: ext_azure-devops_az_repos_list
   name: az repos list
   summary: List Git repositories of a team project.
-  description: rtypelist of <GitRepository>.
+  description: ''
   langs:
   - azurecli
   parameters:
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
   - name: --project -p
-    summary: Name or ID of the project.
+    summary: Name or ID of the project. You can configure the default project using az devops configure -d project=NAME_OR_ID. Required if not configured as default or picked up via git config.
     description: ''
 - uid: ext_azure-devops_az_repos_show
   name: az repos show
@@ -89,17 +89,17 @@ items:
     summary: Name or ID of the repository.
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --open
     summary: Open the repository page in your web browser.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
   - name: --project -p
-    summary: Name or ID of the project.
+    summary: Name or ID of the project. You can configure the default project using az devops configure -d project=NAME_OR_ID. Required if not configured as default or picked up via git config.
     description: ''
 - uid: ext_azure-devops_az_repos_update
   name: az repos update
@@ -116,17 +116,17 @@ items:
     summary: "Default branch to be set for the repository. Example: 'refs/heads/live' or 'live'."
     description: ''
   - name: --detect
-    parameterValueGroup: off, on
-    summary: Automatically detect organization. Default is "on".
+    parameterValueGroup: false, true
+    summary: Automatically detect organization.
     description: ''
   - name: --name
     summary: New name for the repository.
     description: ''
   - name: --org --organization
-    summary: 'Azure Devops organization URL. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
+    summary: 'Azure DevOps organization URL. You can configure the default organization using az devops configure -d organization=ORG_URL. Required if not configured as default or picked up via git config. Example: <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a>.'
     description: ''
   - name: --project -p
-    summary: Name or ID of the project.
+    summary: Name or ID of the project. You can configure the default project using az devops configure -d project=NAME_OR_ID. Required if not configured as default or picked up via git config.
     description: ''
 commands:
 - uid: ext_azure-devops_az_repos_create
@@ -237,12 +237,9 @@ commands:
 - uid: ext_azure-devops_az_repos_pr
   name: az repos pr
   summary: Manage pull requests.
-- uid: ext_azure-devops_az_repos_pr_abandon
-  name: az repos pr abandon
-  summary: Abandon a pull request.
-- uid: ext_azure-devops_az_repos_pr_complete
-  name: az repos pr complete
-  summary: Complete a pull request.
+- uid: ext_azure-devops_az_repos_pr_checkout
+  name: az repos pr checkout
+  summary: Checkout the PR source branch locally, if no local changes are present.
 - uid: ext_azure-devops_az_repos_pr_create
   name: az repos pr create
   summary: Create a pull request.
@@ -258,9 +255,6 @@ commands:
 - uid: ext_azure-devops_az_repos_pr_policy_queue
   name: az repos pr policy queue
   summary: Queue an evaluation of a policy for a pull request.
-- uid: ext_azure-devops_az_repos_pr_reactivate
-  name: az repos pr reactivate
-  summary: Reactivate an abandoned pull request.
 - uid: ext_azure-devops_az_repos_pr_reviewer
   name: az repos pr reviewer
   summary: Manage pull request reviewers.

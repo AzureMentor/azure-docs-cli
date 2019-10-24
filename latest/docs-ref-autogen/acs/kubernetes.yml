@@ -22,23 +22,24 @@ items:
     summary: Name of the container service. You can configure the default using `az configure --defaults acs=&lt;name&gt;`.
     description: ''
   - isRequired: true
-    name: --resource-group
-    summary: ''
+    name: --resource-group -g
+    summary: Name of resource group. You can configure the default group using `az configure --defaults group=&lt;name&gt;`.
     description: ''
   - name: --disable-browser
     summary: Do not open browser after opening a proxy to the cluster web user interface.
     description: ''
   - name: --ssh-key-file
-    summary: ''
+    defaultValue: ~\.ssh\id_rsa
+    summary: Path to an SSH key file to use.
     description: ''
   - name: --subscription
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_acs_kubernetes_get_credentials
   name: az acs kubernetes get-credentials
@@ -64,7 +65,7 @@ items:
     summary: Where to install the kubectl config file.
     description: ''
   - name: --overwrite-existing
-    summary: ''
+    summary: If specified, overwrite any existing credentials.
     description: ''
   - name: --ssh-key-file
     summary: Path to an SSH key file to use.
@@ -73,10 +74,10 @@ items:
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_acs_kubernetes_install_cli
   name: az acs kubernetes install-cli
@@ -87,20 +88,20 @@ items:
   parameters:
   - name: --client-version
     defaultValue: latest
-    summary: ''
+    summary: Version of the client to install.
     description: ''
   - name: --install-location
     defaultValue: ~/.azure-kubectl/kubectl.exe
-    summary: ''
+    summary: Path at which to install DC/OS.
     description: ''
   - name: --subscription
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
   source:
-    path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+    path: src/azure-cli/azure/cli/command_modules/acs/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
+      path: src/azure-cli/azure/cli/command_modules/acs/_help.py
       repo: https://github.com/Azure/azure-cli.git
 commands:
 - uid: az_acs_kubernetes_browse
@@ -126,9 +127,9 @@ globalParameters:
 - name: --verbose
   summary: Increase logging verbosity. Use --debug for full debug logs.
 doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-doc_source_url_path: src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
-original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
-gitcommit: https://github.com/Azure/azure-cli/blob/699cd3ada333c9abe8efaf2bf16b9ddc6d441afa/src/command_modules/azure-cli-acs/azure/cli/command_modules/acs/_help.py
-updated_at: 4/12/2019 2:54:45 PM
-ms.date: 04/12/2019
+doc_source_url_path: src/azure-cli/azure/cli/command_modules/acs/_help.py
+original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+gitcommit: https://github.com/Azure/azure-cli/blob/7764aad5a6586ff9f847e0c21c97915fec2411aa/src/azure-cli/azure/cli/command_modules/acs/_help.py
+updated_at: 9/19/2019 1:57:41 AM
+ms.date: 09/19/2019
 description: Commands to manage a Kubernetes-orchestrated Azure Container Service.

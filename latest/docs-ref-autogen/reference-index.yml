@@ -13,6 +13,7 @@ items:
   - az_interactive
   - az_login
   - az_logout
+  - az_rest
   - az_self_test
 - uid: az_configure
   name: az configure
@@ -31,14 +32,20 @@ items:
   - name: --defaults -d
     summary: Space-separated 'name=value' pairs for common argument defaults.
     description: ''
-  - name: --subscription
-    summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
+  - name: --list-defaults -l
+    parameterValueGroup: false, true
+    summary: List all applicable defaults.
+    description: ''
+  - name: --scope
+    defaultValue: global
+    parameterValueGroup: global, local
+    summary: Scope of defaults. Using "local" for settings only effective under current folder.
     description: ''
   source:
-    path: src/command_modules/azure-cli-configure/azure/cli/command_modules/configure/_help.py
+    path: src/azure-cli/azure/cli/command_modules/configure/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-configure/azure/cli/command_modules/configure/_help.py
+      path: src/azure-cli/azure/cli/command_modules/configure/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_feedback
   name: az feedback
@@ -46,15 +53,12 @@ items:
   description: ''
   langs:
   - azurecli
-  parameters:
-  - name: --subscription
-    summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
-    description: ''
+  parameters: []
   source:
-    path: src/command_modules/azure-cli-feedback/azure/cli/command_modules/feedback/_help.py
+    path: src/azure-cli/azure/cli/command_modules/feedback/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-feedback/azure/cli/command_modules/feedback/_help.py
+      path: src/azure-cli/azure/cli/command_modules/feedback/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_find
   name: az find
@@ -65,30 +69,27 @@ items:
   examples:
   - summary: Give me any Azure CLI group and I’ll show the most popular commands within the group.
     syntax:
-      content: az find 'az storage'
+      content: az find "az storage"
   - summary: Give me any Azure CLI command and I’ll show the most popular parameters and subcommands.
     syntax:
-      content: az find 'az monitor activity-log list'
+      content: az find "az monitor activity-log list"
   - summary: You can also enter a search term, and I'll try to help find the best commands.
     syntax:
-      content: az find 'arm template'
+      content: az find "arm template"
   parameters:
   - name: <CLI_TERM>
     summary: An Azure CLI command or group for which you need an example.
     description: ''
-  - name: --subscription
-    summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
-    description: ''
   source:
-    path: src/command_modules/azure-cli-find/azure/cli/command_modules/find/_help.py
+    path: src/azure-cli/azure/cli/command_modules/find/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-find/azure/cli/command_modules/find/_help.py
+      path: src/azure-cli/azure/cli/command_modules/find/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_interactive
   name: az interactive
   summary: Start interactive mode. Installs the Interactive extension if not installed already.
-  description: 'For more information on interactive mode, see: <a href="https://azure.microsoft.com/en-us/blog/welcome-to-azure-cli-shell/">https://azure.microsoft.com/en-us/blog/welcome-to-azure-cli-shell/</a>.'
+  description: 'For more information on interactive mode, see: <a href="https://azure.microsoft.com/blog/welcome-to-azure-cli-shell/">https://azure.microsoft.com/blog/welcome-to-azure-cli-shell/</a>.'
   langs:
   - azurecli
   parameters:
@@ -98,9 +99,6 @@ items:
     description: ''
   - name: --update
     summary: Update the Interactive extension to the latest available.
-    description: ''
-  - name: --subscription
-    summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
 - uid: az_login
   name: az login
@@ -152,14 +150,11 @@ items:
   - name: --identity -i
     summary: Log in using the Virtual Machine's identity.
     description: ''
-  - name: --subscription
-    summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
-    description: ''
   source:
-    path: src/command_modules/azure-cli-profile/azure/cli/command_modules/profile/_help.py
+    path: src/azure-cli/azure/cli/command_modules/profile/_help.py
     remote:
       branch: dev
-      path: src/command_modules/azure-cli-profile/azure/cli/command_modules/profile/_help.py
+      path: src/azure-cli/azure/cli/command_modules/profile/_help.py
       repo: https://github.com/Azure/azure-cli.git
 - uid: az_logout
   name: az logout
@@ -171,15 +166,57 @@ items:
   - name: --username
     summary: Account user, if missing, logout the current active account.
     description: ''
+  source:
+    path: src/azure-cli/azure/cli/command_modules/profile/_help.py
+    remote:
+      branch: dev
+      path: src/azure-cli/azure/cli/command_modules/profile/_help.py
+      repo: https://github.com/Azure/azure-cli.git
+- uid: az_rest
+  name: az rest
+  summary: Invoke a custom request.
+  description: ''
+  langs:
+  - azurecli
+  examples:
+  - summary: Get Audit log through Microsoft Graph
+    syntax:
+      content: az rest --method get --uri https://graph.microsoft.com/beta/auditLogs/directoryAudits
+  - summary: Update a Azure Active Directory Graph User's display name
+    syntax:
+      content: 'az rest --method patch --uri "https://graph.microsoft.com/v1.0/users/johndoe@azuresdkteam.onmicrosoft.com" --body "{\"displayName\": \"jondoe2\"}"'
+  parameters:
+  - isRequired: true
+    name: --method -m
+    defaultValue: get
+    parameterValueGroup: delete, get, head, options, patch, post, put
+    summary: HTTP request method.
+    description: ''
+  - isRequired: true
+    name: --uri -u
+    summary: Request uri. For uri without host, CLI will assume "<a href="https://management.azure.com/">https://management.azure.com/</a>". Common tokens will also be replaced with real values including "{subscriptionId}".
+    description: ''
+  - name: --body -b
+    summary: Request body. Use @{file} to load from a file.
+    description: ''
+  - name: --headers
+    summary: Space-separated headers in KEY=VALUE format or JSON string. Use @{file} to load from a file.
+    description: ''
+  - name: --output-file
+    summary: Save response payload to a file.
+    description: ''
+  - name: --resource
+    summary: Resource url for which CLI should acquire a token in order to access the service. The token will be placed in the "Authorization" header. By default, CLI can figure this out based on "--url" argument, unless you use ones not in the list of "az cloud show --query endpoints".
+    description: ''
+  - name: --skip-authorization-header
+    summary: Do not auto append "Authorization" header.
+    description: ''
+  - name: --uri-parameters
+    summary: Space-separated queries in KEY=VALUE format or JSON string. Use @{file} to load from a file.
+    description: ''
   - name: --subscription
     summary: Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`.
     description: ''
-  source:
-    path: src/command_modules/azure-cli-profile/azure/cli/command_modules/profile/_help.py
-    remote:
-      branch: dev
-      path: src/command_modules/azure-cli-profile/azure/cli/command_modules/profile/_help.py
-      repo: https://github.com/Azure/azure-cli.git
 - uid: az_self_test
   name: az self-test
   summary: Runs a self-test of the CLI.
@@ -212,9 +249,18 @@ commands:
 - uid: az_ams
   name: az ams
   summary: Manage Azure Media Services resources.
+- uid: az_apim
+  name: az apim
+  summary: Manage Azure API Management services.
+- uid: az_appconfig
+  name: az appconfig
+  summary: Manage App Configurations.
 - uid: az_appservice
   name: az appservice
   summary: Manage App Service plans.
+- uid: az_artifacts
+  name: az artifacts
+  summary: Manage Azure Artifacts.
 - uid: az_backup
   name: az backup
   summary: Manage Azure Backups.
@@ -227,12 +273,15 @@ commands:
 - uid: az_billing
   name: az billing
   summary: Manage Azure Billing.
+- uid: az_boards
+  name: az boards
+  summary: Manage Azure Boards.
 - uid: az_bot
   name: az bot
-  summary: Manage Microsoft Bot Services.
+  summary: Manage Microsoft Azure Bot Service.
 - uid: az_cache
   name: az cache
-  summary: Commands to manage the CLI's on-disk object cache.
+  summary: Commands to manage CLI objects cached using the `--defer` argument.
 - uid: az_cdn
   name: az cdn
   summary: Manage Azure Content Delivery Networks (CDNs).
@@ -260,21 +309,24 @@ commands:
 - uid: az_deploymentmanager
   name: az deploymentmanager
   summary: Create and manage rollouts for your service.
+- uid: az_devops
+  name: az devops
+  summary: Manage Azure DevOps organization level operations.
 - uid: az_disk
   name: az disk
   summary: Manage Azure Managed Disks.
 - uid: az_dla
   name: az dla
-  summary: (PREVIEW) Manage Data Lake Analytics accounts, jobs, and catalogs.
+  summary: Manage Data Lake Analytics accounts, jobs, and catalogs.
 - uid: az_dls
   name: az dls
-  summary: (PREVIEW) Manage Data Lake Store accounts and filesystems.
+  summary: Manage Data Lake Store accounts and filesystems.
 - uid: az_dms
   name: az dms
   summary: Manage Azure Data Migration Service (DMS) instances.
 - uid: az_eventgrid
   name: az eventgrid
-  summary: Manage Azure Event Grid topics and subscriptions.
+  summary: Manage Azure Event Grid topics, event subscriptions, domains and domain topics.
 - uid: az_eventhubs
   name: az eventhubs
   summary: Manage Azure Event Hubs namespaces, eventhubs, consumergroups and geo recovery configurations - Alias.
@@ -292,7 +344,7 @@ commands:
   summary: I'm an AI robot, my advice is based on our Azure documentation as well as the usage patterns of Azure CLI and Azure ARM users. Using me improves Azure products and documentation.
 - uid: az_functionapp
   name: az functionapp
-  summary: Manage function apps.
+  summary: Manage function apps. To install the Azure Functions Core tools see <a href="https://github.com/Azure/azure-functions-core-tools">https://github.com/Azure/azure-functions-core-tools</a>.
 - uid: az_group
   name: az group
   summary: Manage resource groups and template deployments.
@@ -335,6 +387,9 @@ commands:
 - uid: az_managedapp
   name: az managedapp
   summary: Manage template solutions provided and maintained by Independent Software Vendors (ISVs).
+- uid: az_managedservices
+  name: az managedservices
+  summary: Manage the registration assignments and definitions in Azure.
 - uid: az_maps
   name: az maps
   summary: Manage Azure Maps.
@@ -347,18 +402,27 @@ commands:
 - uid: az_mysql
   name: az mysql
   summary: Manage Azure Database for MySQL servers.
+- uid: az_netappfiles
+  name: az netappfiles
+  summary: Manage Azure NetApp Files (ANF) Resources.
 - uid: az_network
   name: az network
   summary: Manage Azure Network resources.
 - uid: az_openshift
   name: az openshift
-  summary: (PREVIEW) Manage Azure OpenShift Services.
+  summary: Manage Azure Red Hat OpenShift Services.
+- uid: az_pipelines
+  name: az pipelines
+  summary: Manage Azure Pipelines.
 - uid: az_policy
   name: az policy
   summary: Manage resource policies.
 - uid: az_postgres
   name: az postgres
   summary: Manage Azure Database for PostgreSQL servers.
+- uid: az_ppg
+  name: az ppg
+  summary: Manage Proximity Placement Groups.
 - uid: az_provider
   name: az provider
   summary: Manage resource providers.
@@ -368,12 +432,18 @@ commands:
 - uid: az_relay
   name: az relay
   summary: Manage Azure Relay Service namespaces, WCF relays, hybrid connections, and rules.
+- uid: az_repos
+  name: az repos
+  summary: Manage Azure Repos.
 - uid: az_reservations
   name: az reservations
   summary: Manage Azure Reservations.
 - uid: az_resource
   name: az resource
   summary: Manage Azure resources.
+- uid: az_rest
+  name: az rest
+  summary: Invoke a custom request.
 - uid: az_role
   name: az role
   summary: Manage user roles for access control with Azure Active Directory and service principals.
@@ -433,8 +503,8 @@ globalParameters:
 - name: --verbose
   summary: Increase logging verbosity. Use --debug for full debug logs.
 doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-doc_source_url_path: src/command_modules/azure-cli-profile/azure/cli/command_modules/profile/_help.py
-original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/command_modules/azure-cli-profile/azure/cli/command_modules/profile/_help.py
-gitcommit: https://github.com/Azure/azure-cli/blob/250f775d0531e622b4d2486ea3d55aa820675efb/src/command_modules/azure-cli-profile/azure/cli/command_modules/profile/_help.py
-updated_at: 10/25/2018 6:45:26 PM
-ms.date: 10/25/2018
+doc_source_url_path: src/azure-cli/azure/cli/command_modules/profile/_help.py
+original_content_git_url: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/profile/_help.py
+gitcommit: https://github.com/Azure/azure-cli/blob/f22ee7fbcfc1266b42d370c0410feb5e7ba5fefe/src/azure-cli/azure/cli/command_modules/profile/_help.py
+updated_at: 6/4/2019 11:58:35 PM
+ms.date: 06/04/2019
